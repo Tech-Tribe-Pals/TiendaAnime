@@ -1,0 +1,39 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+header {
+  background-color: #444;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+header ul {
+  display: flex;
+  gap: 20px;
+  margin-right: 15px;
+}
+
+header img {
+  width: 50px;
+  margin-left: 15px;
+}
+
+main {
+  padding-top: 30px;
+}

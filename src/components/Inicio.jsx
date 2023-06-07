@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 const Inicios = styled.section`
@@ -119,14 +118,12 @@ export default function Inicio() {
       <img
         className="Background-Vector-White"
         src="./Vector-White-Home.svg"
-        alt=""
-        srcset=""
+        alt="estatua"
       />
       <img
         className="Background-Vector-Blue"
         src="./Vector-Blue-Home.svg"
-        alt=""
-        srcset=""
+        alt="linea"
       />
     </Inicios>
   );

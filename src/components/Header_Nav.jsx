@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import React from "react";
 import styled from "styled-components";
 
-const HeaderNav = styled.nav`
+// eslint-disable-next-line react-refresh/only-export-components
+const Nav = styled.nav`
   height: 90px;
   width: 100%;
   background-color: white;
@@ -15,7 +15,7 @@ const HeaderNav = styled.nav`
   align-items: center;
   justify-content: space-between;
   position: fixed;
-  z-index:4;
+  z-index: 4;
   top: 0;
 
   img {
@@ -48,17 +48,21 @@ const HeaderNav = styled.nav`
 
 export default function Header_Nav() {
   return (
-    <HeaderNav>
-      <img src="./iconNav.svg" alt="" />
-      <ul>
-        <li>Inicio</li>
-        <li>Novedades</li>
-        <li><Link to={'/Home'}>Home</Link></li>
-        <li><Link to={'/Contact'}>Tienda</Link></li>
-        <li>
-          <img src="./baskets-market.svg" alt="" />
-        </li>
-      </ul>
-    </HeaderNav>
+    <header>
+      <Nav>
+        <img src="./iconNav.svg" alt="icono" />
+        <ul>
+          <li>
+            <Link to={"/"}>Home</Link>
+          </li>
+          <li>
+            <Link to={"/products"}>Tienda</Link>
+          </li>
+          <li>
+            <img src="./baskets-market.svg" alt="canasta" />
+          </li>
+        </ul>
+      </Nav>
+    </header>
   );
 }

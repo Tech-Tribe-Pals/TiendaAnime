@@ -1,15 +1,9 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import Home from "./pages/Home";
+import Home from './pages/Home'
 import Products from "./pages/Products";
-import Header from "./components/Header";
+import Header_Nav from "./components/Header_Nav";
 import "./App.css";
 import Detail from "./pages/Detail";
-import Header_Nav from "../../tiendaAnimeComponentes/src/component/Header_Nav";
-
-const BrowserRouter = styled.main`
-  background-color: #222222;
-  scroll-behavior: smooth;
-`;
 
 function App() {
   return (

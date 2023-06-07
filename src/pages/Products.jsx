@@ -1,55 +1,108 @@
-import { useEffect, useState } from "react";
 import CardProds from "../components/CardProds";
+import styled from "styled-components";
+import GetProds from "../hooks/GetProds";
+import { useState } from "react";
+
+const ProductStyles = styled.main`
+  margin-top: 100px;
+  .prods {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+  nav {
+    display: flex;
+    justify-content: space-between;
+    border: solid 2px #000;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    ul {
+      display: flex;
+      align-items: center;
+      li {
+        margin-left: 5rem;
+      }
+    }
+    .search {
+      border-radius: 20px;
+      margin-right: 50px;
+      display: flex;
+      align-items: center;
+      border: solid 4px #000;
+      input {
+        border: none;
+        background-color: transparent;
+        padding: 10px;
+        width: 150px;
+        border-radius: 20px 0 0 20px;
+      }
+      .searchIcon {
+        background-color: #3c4e90;
+        border-radius: 0 13px 13px 0;
+        width: 50px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        img {
+          width: 25px;
+          margin-left: 5px;
+          filter: invert(100%);
+        }
+      }
+    }
+  }
+`;
 
 const Products = () => {
-  const [prods, setProds] = useState([]);
-  const [loading, setLoading] = useState(true);
-  let arr = []
-  
-  useEffect(() => {
-    const fetchData = async () => {
+  const [loading, prods, setLoading, setProds] = GetProds();
+  const [searchTerm, setSearchTerm] = useState("");
 
-      try {
-        const response = await fetch("./src/db/data.json");
-        const data = await response.json();
-        data.productos.map((e, i) => {
-          if (i <= 5) {
-            arr.push(e)
-          }
-        })
-        setProds(arr)
-      } catch (error) {
-        console.log("Error al obtener los datos:", error);
-      } finally {
-        setLoading(false); // Establecer el estado de loading en false después de recibir los datos (o en caso de error)
-      }
-    };
+  const handleSearch = async (event) => {
+    const searchTerm = event.target.value.toLowerCase();
+    setSearchTerm(searchTerm);
 
-    fetchData();
-  }, []);
+    setLoading(true);
+    try {
+      const response = await fetch(`${import.meta.env.VITE_APP_URL}/api/products?search=${searchTerm}`);
+      const data = await response.json();
+      setProds(data);
+      setLoading(false);
+    } catch (error) {
+      console.log("Error al obtener los datos:", error);
+      setLoading(false);
+    }
+  };
 
   return (
-    <main>
-    <section className="home">
-    <p>Tu tienda online de Anime</p>
-    </section>
-    <section>
-    <p>Carousel</p>
-    </section>
-    <section>
-    <p>Prods</p>
-    </section>
-    <section>
-    <p>Mas ofertas</p>
-    </section>
-    <section className="prods">
-    {loading ? (
-      <p>Cargando...</p>
-    ) : (
-      prods.map((item, i) => <CardProds key={i} item={item} />)
-    )}
-    </section>
-    </main>
+    <ProductStyles>
+      <nav>
+        <ul>
+          <li>Tipo</li>
+          <li>Marca</li>
+          <li>Precio Max</li>
+          <li>Precio Min</li>
+        </ul>
+        <div className="search">
+          <input
+            placeholder="Buscar..."
+            type="text"
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+          <div className="searchIcon">
+            <img src="./searchIcon.svg" />
+          </div>
+        </div>
+      </nav>
+      <section className="prods">
+        {loading ? (
+          <img className="loader" src={"./naruto.gif"} />
+        ) : (
+          prods.map((item, i) => <CardProds key={i} item={item} />)
+        )}
+      </section>
+    </ProductStyles>
   );
 };
 

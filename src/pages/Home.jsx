@@ -1,13 +1,11 @@
-// import { useState } from 'react';
+import Inicio from "../components/Inicio";
+import CarouselSection from "../components/CarouselSection";
 
-const Home = () => {
-    // const [loading, setLoading] = useState(true)
-
-    return (
-        <main>
-            Pagina principal
-        </main>
-    );
+export default function Home() {
+  return (
+    <main>
+      <Inicio />
+      <CarouselSection />
+    </main>
+  );
 }
-
-export default Home;

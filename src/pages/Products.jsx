@@ -1,7 +1,8 @@
+import { useState, useEffect } from "react";
 import CardProds from "../components/CardProds";
 import styled from "styled-components";
-import GetProds from "../hooks/GetProds";
-import { useState } from "react";
+// import GetProds from "../hooks/GetProds";
+import Pagination from "../components/Pagination";
 
 const ProductStyles = styled.main`
   margin-top: 100px;
@@ -22,6 +23,9 @@ const ProductStyles = styled.main`
       align-items: center;
       li {
         margin-left: 5rem;
+        :hover {
+          cursor: pointer;
+        }
       }
     }
     .search {
@@ -55,33 +59,51 @@ const ProductStyles = styled.main`
 `;
 
 const Products = () => {
-  const [loading, prods, setLoading, setProds] = GetProds();
+  const [prods, setProds] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [filter, setFilter] = useState('asc');
 
-  const handleSearch = async (event) => {
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_APP_URL}/api/products?search=${searchTerm}&filter=${filter}&page=${currentPage}&limit=9`
+        );
+        const data = await response.json();
+        setProds(data.docs);
+        setTotalPages(data.totalPages);
+      } catch (error) {
+        console.log("Error al obtener los datos:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [searchTerm, currentPage, filter]);
+
+  const handleSearch = (event) => {
     const searchTerm = event.target.value.toLowerCase();
     setSearchTerm(searchTerm);
+    setCurrentPage(1);
+  };
 
-    setLoading(true);
-    try {
-      const response = await fetch(`${import.meta.env.VITE_APP_URL}/api/products?search=${searchTerm}`);
-      const data = await response.json();
-      setProds(data);
-      setLoading(false);
-    } catch (error) {
-      console.log("Error al obtener los datos:", error);
-      setLoading(false);
-    }
+  const handlePageChange = async (page) => {
+    setCurrentPage(page);
   };
 
   return (
     <ProductStyles>
       <nav>
         <ul>
-          <li>Tipo</li>
-          <li>Marca</li>
-          <li>Precio Max</li>
-          <li>Precio Min</li>
+          <li onClick={() => setFilter("casc")}>Tipo</li>
+          <li onClick={() => setFilter("basc")}>Marca</li>
+          <li onClick={() => setFilter("asc")}>Precio Min</li>
+          <li onClick={() => setFilter("desc")}>Precio Max</li>
         </ul>
         <div className="search">
           <input
@@ -91,17 +113,22 @@ const Products = () => {
             onChange={handleSearch}
           />
           <div className="searchIcon">
-            <img src="./searchIcon.svg" />
+            <img src="./searchIcon.svg" alt="Search Icon" />
           </div>
         </div>
       </nav>
       <section className="prods">
         {loading ? (
-          <img className="loader" src={"./naruto.gif"} />
+          <img className="loader" src={"./naruto.gif"} alt="Loading" />
         ) : (
           prods.map((item, i) => <CardProds key={i} item={item} />)
         )}
       </section>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
     </ProductStyles>
   );
 };

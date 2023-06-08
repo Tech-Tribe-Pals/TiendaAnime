@@ -97,6 +97,7 @@ export default function CardProds({ item }) {
 
       <div className="container-info">
         <h3>{ item.name }</h3>
+        <p>{ item.price }</p>
         <button>Comprar</button>
       </div>
     </CardProduct>

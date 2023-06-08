@@ -67,7 +67,7 @@ const Inicios = styled.section`
   .Background-Vector-White {
     width: 100%;
     position: absolute;
-    bottom: -10%;
+    bottom: -15%;
     right: 0%;
     z-index: 0;
     pointer-events: none;

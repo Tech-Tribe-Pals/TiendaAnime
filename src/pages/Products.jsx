@@ -4,19 +4,27 @@ import GetProds from "../hooks/GetProds";
 import { useState } from "react";
 
 const ProductStyles = styled.main`
-  margin-top: 100px;
+  margin-top: 20px;
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content:flex-start;
+  height:100vh;
+  width:100%;
   .prods {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
   }
   nav {
+    width: 95%;
     display: flex;
     justify-content: space-between;
     border: solid 2px #000;
-    border-radius: 10px;
+    border-radius: 36px;
     padding: 15px;
-    margin-bottom: 20px;
+    box-shadow: 4px 3px 0px 4px rgb(0, 0, 0, 0.25);
+    font-weight: 600;
     ul {
       display: flex;
       align-items: center;
@@ -25,21 +33,25 @@ const ProductStyles = styled.main`
       }
     }
     .search {
-      border-radius: 20px;
+      border-radius: 25px;
       margin-right: 50px;
       display: flex;
       align-items: center;
       border: solid 4px #000;
+      box-shadow: 2px 3px 0px 0px black;
+
       input {
+        outline: none;
         border: none;
         background-color: transparent;
-        padding: 10px;
-        width: 150px;
+        padding: 7px;
+        width: 100px;
         border-radius: 20px 0 0 20px;
       }
       .searchIcon {
+        
         background-color: #3c4e90;
-        border-radius: 0 13px 13px 0;
+        border-radius: 0 20px 20px 0;
         width: 50px;
         height: 100%;
         display: flex;
@@ -64,7 +76,9 @@ const Products = () => {
 
     setLoading(true);
     try {
-      const response = await fetch(`${import.meta.env.VITE_APP_URL}/api/products?search=${searchTerm}`);
+      const response = await fetch(
+        `${import.meta.env.VITE_APP_URL}/api/products?search=${searchTerm}`
+      );
       const data = await response.json();
       setProds(data);
       setLoading(false);

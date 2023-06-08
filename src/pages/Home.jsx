@@ -1,11 +1,20 @@
 import Inicio from "../components/Inicio";
-import CarouselSection from "../components/CarouselSection";
+import Ofertas from "../components/Ofertas";
+import styled from "styled-components";
+import CarouselOne from "../components/CarouselOne";
+import Contacto from "../components/Contacto";
+
+const PageInicio = styled.main`
+  background-color: #3c4e90;
+`;
 
 export default function Home() {
   return (
-    <main>
+    <PageInicio>
       <Inicio />
-      <CarouselSection />
-    </main>
+      <CarouselOne />
+      <Ofertas />
+      <Contacto />
+    </PageInicio>
   );
 }

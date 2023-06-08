@@ -1,26 +1,60 @@
-import React from "react";
+import { React, useState, useRef } from "react";
 import styled from "styled-components";
+import Carousel from "./Carousel";
+import arr from "./array";
 
-const CartaOne = styled.article`
-  height: 70vh;
-  width: 70%;
-  color: white;
-  background-color: #485ba0;
-  border-radius: 1.2rem;
-  margin-right: 6rem;
-  article {
+const CartaOne = styled.section`
+  height: 100vh;
+  width: 100%;
+  background-color: #3c4e90;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .show {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+  }
+  .hiden {
+    display: none;
+  }
 
-    height: 100%;
-    width: 40%;
+  .botones {
+    margin-right: 5px;
+    margin-left: 5px;
+    margin: 5px;
+    height: 20px;
+    width: 20px;
+    margin-top: 2rem;
+    content: " ";
+    border-radius: 50%;
+    border: none;
+
+    :active {
+      background-color: red;
+    }
+  }
+
+
+  .rojo { background-color: red;}
+
+  .blanco {background-color: #302a2a;}
+
+
+
+  article {
+    height: 70%;
+    width: 70%;
+    color: white;
+    background-color: #485ba0;
+    border-radius: 1.2rem;
+    margin-right: 6rem;
 
     button {
-      margin-top: 1rem;
-      margin-right: 2rem;
-      font-size: 0.9rem;
-      padding: 0.5rem 2rem 0.5rem 2rem;
+      margin-left: 2rem;
+      margin-top: 3rem;
+      font-size: 1.2rem;
+      padding: 0.5rem 1.9rem 0.5rem 1.9rem;
       border-radius: 0.8rem;
       border: #3c4e90 solid 3px;
       font-family: "Oxanium", cursive;
@@ -43,52 +77,43 @@ const CartaOne = styled.article`
         box-shadow: -0px 0px 0px 0px #af1313;
       }
     }
-
-    div {
-      height: 80%;
-      width: 100%;
-      padding: 3rem;
-      display: flex;
-      flex-direction: column;
-
-      h2{
-
-        font-size:xx-large;
-
-      }
-
-      ul {
-        align-self: flex-start;
-        display: flex;
-        flex-direction: column;
-        list-style-type: square;
-        font-size:larger;
-        li {
-          margin-top: 1rem;
-        }
-      }
-    }
   }
 `;
 
 export default function CarouselOne() {
+  const [actual, setActual] = useState(0);
+  const carousel = useRef(null);
+  const botonIndice = useRef();
+
+  const handleClick = (i) => {
+    setActual(i);
+    
+  };
+
+
   return (
     <CartaOne>
-      <article>
-        <div>
-          <h2>
-            Cosplay y <br /> accesorios
-          </h2>
-          <ul>
-            <li>trajes de exelente calidad</li>
-            <li>variedad de diseños</li>
-            <li>todos los talles</li>
-          </ul>
-        </div>
-        <button>Ver Mas</button>
+      <article ref={carousel}>
+        {arr.map((item, i) => (
+          <Carousel
+            cssClass={actual === i ? "show" : "hiden"}
+            key={i}
+            titulo={item.name}
+            num={item.num}
+            num2={item.num2}
+            num3={item.num3}
+          />
+        ))}
       </article>
-
-      <img src="" alt="" />
+      <div ref={botonIndice}>
+        {arr.map((item, i) => (
+          <button
+            className={botonIndice == i ? "rojo" : "blanco"}
+            key={i}
+            onClick={() => handleClick(i)}
+          ></button>
+        ))}
+      </div>
     </CartaOne>
   );
 }

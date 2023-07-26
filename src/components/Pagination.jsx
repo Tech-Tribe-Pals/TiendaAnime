@@ -1,3 +1,17 @@
+import styled from "styled-components";
+
+const PaginationStyle = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 10px;
+  button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none
+  }
+`
+
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const pageNumbers = [];
 
@@ -6,7 +20,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   }
 
   return (
-    <div className="pagination">
+    <PaginationStyle className="pagination">
       {pageNumbers.map((pageNumber) => (
         <button
           key={pageNumber}
@@ -16,7 +30,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           {pageNumber}
         </button>
       ))}
-    </div>
+    </PaginationStyle>
   );
 };
 

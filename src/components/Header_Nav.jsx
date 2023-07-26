@@ -1,5 +1,7 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { CartContext } from "../context/CartContext";
 
 // eslint-disable-next-line react-refresh/only-export-components
 const Nav = styled.nav`
@@ -36,7 +38,10 @@ const Nav = styled.nav`
       margin-left: 2.7rem;
       margin-right: 2.7rem;
       font-size: large;
-
+      .cartNum {
+        position: absolute;
+        bottom: 0;
+      }
       img {
         filter: invert(26%) sepia(55%) saturate(603%) hue-rotate(190deg)
           brightness(103%) contrast(94%);
@@ -47,10 +52,11 @@ const Nav = styled.nav`
 `;
 
 export default function Header_Nav() {
+  const { cart } = useContext(CartContext)
   return (
     <header>
       <Nav>
-        <img src="./iconNav.svg" alt="icono" />
+        <img src="/iconNav.svg" alt="icono" />
         <ul>
           <li>
             <Link to={"/"}>Home</Link>
@@ -59,7 +65,7 @@ export default function Header_Nav() {
             <Link to={"/products"}>Tienda</Link>
           </li>
           <li>
-            <img src="./baskets-market.svg" alt="canasta" />
+            <Link to={'/cart'}><img src="/baskets-market.svg" alt="canasta" /><p className="cartNum">{cart.length}</p></Link>
           </li>
         </ul>
       </Nav>

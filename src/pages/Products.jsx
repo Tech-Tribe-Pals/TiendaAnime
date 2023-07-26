@@ -3,6 +3,7 @@ import CardProds from "../components/CardProds";
 import styled from "styled-components";
 // import GetProds from "../hooks/GetProds";
 import Pagination from "../components/Pagination";
+import Loader from '../components/Loader'
 
 const ProductStyles = styled.main`
   margin-top: 100px;
@@ -10,6 +11,7 @@ const ProductStyles = styled.main`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
+    margin-bottom: 20px;
   }
   nav {
     display: flex;
@@ -119,7 +121,7 @@ const Products = () => {
       </nav>
       <section className="prods">
         {loading ? (
-          <img className="loader" src={"./naruto.gif"} alt="Loading" />
+          <Loader />
         ) : (
           prods.map((item, i) => <CardProds key={i} item={item} />)
         )}

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -62,7 +63,8 @@ const CardProduct = styled.article`
       align-self: flex-center;
     }
 
-    button {
+    a {
+      text-decoration: none;
       cursor: pointer;
       margin-right: 0.5rem;
       margin-bottom: 1rem;
@@ -98,7 +100,7 @@ export default function CardProds({ item }) {
       <div className="container-info">
         <h3>{ item.name }</h3>
         <p>{ item.price }</p>
-        <button>Comprar</button>
+        <Link to={`/products/${item._id}`}>Comprar</Link>
       </div>
     </CardProduct>
   );

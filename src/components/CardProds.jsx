@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 // eslint-disable-next-line react-refresh/only-export-components
 const CardProduct = styled.article`
   background-color: #ffffff;
@@ -37,9 +36,8 @@ const CardProduct = styled.article`
     height: 55%;
     width: 85%;
     border: rgb(0, 0, 0) solid 1px;
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
-    border-bottom-right-radius: 1rem;
+    border-radius: 1rem;
+    
     display: flex;
     justify-content: center;
   }
@@ -53,36 +51,45 @@ const CardProduct = styled.article`
     text-align: start;
     display: flex;
     flex-flow: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-around;
 
     h3 {
-      margin-top: 1rem;
-      margin-right: 6rem;
+      margin-left:.3rem;
+      font-size:.9rem;
       align-self: flex-center;
     }
 
+
+
+    .container-price-button{
+      display:flex;
+      height:20%;
+      width:100%;
+      flex-direction:row;
+      justify-content:space-between;
+      align-items:center;
+      padding: 0px 1rem 0px 1rem;
     button {
       cursor: pointer;
-      margin-right: 0.5rem;
-      margin-bottom: 1rem;
       font-size: smaller;
       font-weight: bold;
       color: white;
       background-color: #75b46a;
       align-self: flex-end !important;
       border-radius: 0.8rem;
-      padding: 0.5rem 1.5rem 0.5rem 1.5rem;
-      margin-left: 0.8rem;
+      padding: 0.4rem 1rem 0.4rem 1rem;
+ 
+      margin-left: 4rem;
       border: rgb(0, 0, 0) solid 1px;
       box-shadow: rgba(0, 0, 0, 1) 2px 3px 0px 1px;
-
       :active {
         color: white;
         transform: scale(0.9);
         box-shadow: rgba(0, 0, 0, 1) 1px 1px 0px 1px;
       }
     }
+  }
   }
 `;
 
@@ -92,13 +99,12 @@ export default function CardProds({ item }) {
       <div className="container-img">
         <img src={ item.img } alt="imgProd" />
       </div>
-
       <h5>{ item.brand }</h5>
-
       <div className="container-info">
         <h3>{ item.name }</h3>
+        <div className="container-price-button">
         <p>{ item.price }</p>
-        <button>Comprar</button>
+        <button>Comprar</button></div>
       </div>
     </CardProduct>
   );

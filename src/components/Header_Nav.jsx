@@ -1,33 +1,28 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import styled, { keyframes } from 'styled-components'
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { CartContext } from "../context/CartContext";
 
-const HeaderStyle = styled.header`
+// eslint-disable-next-line react-refresh/only-export-components
+const Nav = styled.nav`
+  height: 90px;
+  width: 100%;
+  background-color: white;
+  border-radius: 1rem;
+  border: solid #3c4e90 3px;
+  display: flex;
+  padding-left: 3rem;
+  padding-right: 6rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 4;
+  top: 0;
 
-  position:sticky;
-  top:0;
-  z-index:2;
-  background-color:transparent;
-
-  .puertaDerecha {
-    height: 100%;
-    width: 55.4%;
-    z-index: 4;
-    position: fixed;
-    top:0;
-    transform: translateX(200%);
-    animation: ${({ isAnimated }) => (isAnimated ? derechaAnimation : 'none')} 3s ease;
-  }
-
-  .puertaIzquierda {
-    position: fixed;
-    top:0;
-    left: 0;
-    height: 100%;
-    width: 50%;
-    transform: translateX(-100%);
-    z-index: 3;
-    animation: ${({ isAnimated }) => (isAnimated ? izquierdaAnimation : 'none')} 2.9s ease;
+  img {
+    height: 55px;
+    width: 55px;
   }
 
   nav {
@@ -50,26 +45,19 @@ const HeaderStyle = styled.header`
       height: 55px;
       width: 55px;
     }
-
-    ul {
-      display: flex;
-      flex-direction: row;
-      list-style: none;
-      color: #3c4e90;
-      display: flex;
-      align-items: center;
-
-      li {
-        font-weight: bold;
-        margin-left: 2.7rem;
-        margin-right: 2.7rem;
-        font-size: large;
-
-        img {
-          filter: invert(26%) sepia(55%) saturate(603%) hue-rotate(190deg)
-            brightness(103%) contrast(94%);
-          width: 40px;
-        }
+    li {
+      font-weight: bold;
+      margin-left: 2.7rem;
+      margin-right: 2.7rem;
+      font-size: large;
+      .cartNum {
+        position: absolute;
+        bottom: 0;
+      }
+      img {
+        filter: invert(26%) sepia(55%) saturate(603%) hue-rotate(190deg)
+          brightness(103%) contrast(94%);
+        width: 40px;
       }
     }
   }
@@ -100,6 +88,8 @@ const izquierdaAnimation = keyframes`
 `;
 
 export default function Header_Nav() {
+  
+  const { cart } = useContext(CartContext)
   const navigate = useNavigate();
   const [isAnimated, setIsAnimated] = useState(false);
 
@@ -126,10 +116,9 @@ export default function Header_Nav() {
 
   return (
     <HeaderStyle isAnimated={isAnimated}>
-      <nav>
-
-      <img src="./logo.svg" alt="" />
-
+      <Nav>
+        <img src="/iconNav.svg" alt="icono" />
+        <img src="./logo.svg" alt="" />
         <ul>
           <li>
             <button onClick={() => handleNavigation('/products')}>
@@ -147,12 +136,10 @@ export default function Header_Nav() {
             </button>
           </li>
           <li>
-            <div onClick={() => handleNavigation('/ruta3')}>
-              
-            </div>
+            <div onClick={() => handleNavigation('/cart')}><img src="/baskets-market.svg" alt="canasta" /><p className="cartNum">{cart.length}</p></div>
           </li>
         </ul>
-      </nav>
+      </Nav>
       
         <img className="puertaDerecha" src="/Puerta derecha.png" alt="" />
         <img className="puertaIzquierda" src="/Puerta izquierda.png" alt="" />

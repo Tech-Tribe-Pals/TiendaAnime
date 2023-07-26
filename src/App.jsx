@@ -4,6 +4,7 @@ import Products from "./pages/Products";
 import Header_Nav from "./components/Header_Nav";
 import "./App.css";
 import Detail from "./pages/Detail";
+import Cart from "./pages/Cart";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Header_Nav />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:id" element={<Detail />} />
       </Routes>

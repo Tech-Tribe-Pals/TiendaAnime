@@ -137,7 +137,7 @@ export default function Header_Nav() {
             </button>
           </li>
           <li>
-            <button onClick={() => handleNavigation('/home')}>
+            <button onClick={() => handleNavigation('/')}>
                 home
             </button>
           </li>

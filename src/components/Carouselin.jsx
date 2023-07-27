@@ -16,7 +16,7 @@ const CarouselStyle = styled.section`
 
 const Carouselin = () => {
   const [actual, setActual] = useState(0);
-  const carousel = useRef(null);
+  
   const arr = [{ img: "img1" }, { img: "img2" }, { img: "img3" }];
 
   const handleClick = (pos) => {

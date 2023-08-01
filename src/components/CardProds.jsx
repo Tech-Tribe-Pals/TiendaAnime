@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-
 // eslint-disable-next-line react-refresh/only-export-components
 const CardProduct = styled.article`
   background-color: #ffffff;
@@ -38,9 +37,8 @@ const CardProduct = styled.article`
     height: 55%;
     width: 85%;
     border: rgb(0, 0, 0) solid 1px;
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
-    border-bottom-right-radius: 1rem;
+    border-radius: 1rem;
+
     display: flex;
     justify-content: center;
   }

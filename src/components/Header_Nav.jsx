@@ -1,10 +1,10 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { useContext, useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import styled, { keyframes } from "styled-components";
 import { CartContext } from "../context/CartContext";
 
 // eslint-disable-next-line react-refresh/only-export-components
-const Nav = styled.nav`
+const HeaderStyle = styled.nav`
   height: 90px;
   width: 100%;
   background-color: white;
@@ -116,7 +116,7 @@ export default function Header_Nav() {
 
   return (
     <HeaderStyle isAnimated={isAnimated}>
-      <Nav>
+      <nav>
         <img src="/iconNav.svg" alt="icono" />
         <img src="./logo.svg" alt="" />
         <ul>
@@ -139,7 +139,7 @@ export default function Header_Nav() {
             <div onClick={() => handleNavigation('/cart')}><img src="/baskets-market.svg" alt="canasta" /><p className="cartNum">{cart.length}</p></div>
           </li>
         </ul>
-      </Nav>
+      </nav>
       
         <img className="puertaDerecha" src="/Puerta derecha.png" alt="" />
         <img className="puertaIzquierda" src="/Puerta izquierda.png" alt="" />

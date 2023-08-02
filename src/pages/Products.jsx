@@ -3,10 +3,9 @@ import CardProds from "../components/CardProds";
 import styled from "styled-components";
 // import GetProds from "../hooks/GetProds";
 import Pagination from "../components/Pagination";
-import Loader from '../components/Loader'
+import Loader from "../components/Loader";
 
 const ProductStyles = styled.main`
-  margin-top: 100px;
   .prods {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -42,6 +41,9 @@ const ProductStyles = styled.main`
         padding: 10px;
         width: 150px;
         border-radius: 20px 0 0 20px;
+        :focus {
+          outline: none;
+        }
       }
       .searchIcon {
         background-color: #3c4e90;
@@ -66,14 +68,16 @@ const Products = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [filter, setFilter] = useState('asc');
+  const [filter, setFilter] = useState("asc");
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_APP_URL}/api/products?search=${searchTerm}&filter=${filter}&page=${currentPage}&limit=9`
+          `${
+            import.meta.env.VITE_APP_URL
+          }/api/products?search=${searchTerm}&filter=${filter}&page=${currentPage}&limit=9`
         );
         const data = await response.json();
         setProds(data.docs);

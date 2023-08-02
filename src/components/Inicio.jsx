@@ -3,6 +3,7 @@ import styled from "styled-components";
 const Inicios = styled.section`
   background-color: #222222;
   height: 100vh;
+  width:100%;
   position: relative;
   display: flex;
   flex-direction: column;

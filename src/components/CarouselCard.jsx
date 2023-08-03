@@ -11,9 +11,10 @@ const Card = styled.div`
     width: 50%;
     display: flex;
     align-items: center;
+    justify-content: center;
     img {
-        border-radius: 100%;
-        width: 90%;
+      border-radius: 100%;
+      width: 100%;
     }
   }
   .text {
@@ -22,15 +23,15 @@ const Card = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #FFF;
+    color: #fff;
     h2 {
-        margin-bottom: 20px;
+      margin-bottom: 20px;
     }
     button {
-        margin-top: 40px;
-        padding: 5px 15px;
-        border-radius: 5px;
-        border: none;
+      margin-top: 40px;
+      padding: 5px 15px;
+      border-radius: 5px;
+      border: none;
     }
   }
 `;
@@ -39,12 +40,12 @@ const CarouselCard = ({ img }) => {
   return (
     <Card>
       <div className="text">
-      <h2>Titulo</h2>
-      <p>Texto</p>
-      <button>Ver mas</button>
+        <h2>Titulo</h2>
+        <p>Texto</p>
+        <button>Ver mas</button>
       </div>
       <div className="imgSection">
-      <img src={img} />
+        <img src={img} />
       </div>
     </Card>
   );

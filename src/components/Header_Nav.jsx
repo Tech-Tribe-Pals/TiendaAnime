@@ -1,6 +1,6 @@
-import React, { useContext, useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import styled, { keyframes } from "styled-components";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 import { CartContext } from "../context/CartContext";
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -10,31 +10,6 @@ const HeaderStyle = styled.header`
   top: 0;
   z-index: 2;
   background-color: transparent;
-
-  .puertaDerecha {
-    height: 100%;
-    width: 55.4%;
-    z-index: 4;
-    position: fixed;
-    top: 0;
-    transform: translateX(200%);
-    /* animation: ${({ isAnimated }) =>
-      isAnimated ? derechaAnimation : "none"}
-      3s ease; */
-  }
-
-  .puertaIzquierda {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 50%;
-    transform: translateX(-100%);
-    z-index: 3;
-    /* animation: ${({ isAnimated }) =>
-      isAnimated ? izquierdaAnimation : "none"}
-      2.9s ease; */
-  }
 
   nav {
     height: 90px;
@@ -110,81 +85,30 @@ const HeaderStyle = styled.header`
   }
 `;
 
-const derechaAnimation = keyframes`
-  25% {
-    transform: translateX(80.5%);
-  }
-  50% {
-    transform: translateX(80.5%);
-  }
-  100% {
-    transform: translateX(200%);
-  }
-`;
-
-const izquierdaAnimation = keyframes`
-  25% {
-    transform: translateX(0%);
-  }
-  50% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-`;
-
 export default function Header_Nav() {
   const { cart } = useContext(CartContext);
-  const navigate = useNavigate();
-  const [isAnimated, setIsAnimated] = useState(false);
-
-  useEffect(() => {
-    let timeoutId;
-
-    if (isAnimated) {
-      timeoutId = setTimeout(() => {
-        setIsAnimated(false);
-      }, 2900); // Duración de la animación en milisegundos
-    }
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [isAnimated]);
-
-  const handleNavigation = (route) => {
-    setIsAnimated(true);
-    setTimeout(() => {
-      navigate(route);
-    }, 1400); // Retardo antes de la redirección en milisegundos
-  };
 
   return (
-    <HeaderStyle isAnimated={isAnimated}>
+    <HeaderStyle>
       <nav>
         <img src="/iconNav.svg" alt="icono" />
         <ul>
           <li>
-            {" "}
-            <button onClick={() => handleNavigation("/")}>Inicio</button>
+            <Link to={'/'}>Inicio</Link>
           </li>
           <li>
-            <button onClick={() => handleNavigation("/products")}>
+            <Link to={'/products'}>
               Tienda
-            </button>
+            </Link>
           </li>
           <li>
-            <div className="cart" onClick={() => handleNavigation("/cart")}>
+            <Link to={'/cart'}>
               <img src="/baskets-market.svg" alt="canasta" />
               <p className="cartNum">{cart.length}</p>
-            </div>
+            </Link>
           </li>
         </ul>
       </nav>
-
-      <img className="puertaDerecha" src="/Puerta derecha.png" alt="" />
-      <img className="puertaIzquierda" src="/Puerta izquierda.png" alt="" />
     </HeaderStyle>
   );
 }

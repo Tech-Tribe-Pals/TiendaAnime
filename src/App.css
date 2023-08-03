@@ -4,4 +4,6 @@
 * {
   font-family: "Oxanium", cursive;
   list-style: none;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
 }

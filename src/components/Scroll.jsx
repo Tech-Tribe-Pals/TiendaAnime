@@ -1,15 +1,25 @@
-import { useState } from 'react';
-import styled from 'styled-components';
+import { useEffect } from "react";
+import { useState } from "react";
+import styled from "styled-components";
 
 const ScrollStyle = styled.div`
   width: 50px;
   height: 250px;
-  background-color: #545;
+  background-color: #fff;
   overflow: hidden;
-  position: sticky;
-
+  position: fixed;
+  top: 40vh;
+  z-index: 10;
+  right: 20px;
+  border: solid 2px #1e2747;
+  border-radius: 15px;
+  align-items: center;
   p {
-    height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    height: 33%;
     cursor: pointer;
   }
 `;
@@ -17,16 +27,59 @@ const ScrollStyle = styled.div`
 const Scroll = () => {
   const [startIndex, setStartIndex] = useState(0);
 
-  const handleClick = (index) => {
-    setStartIndex(index);
+  const sections = ['carousel', 'news', 'sales', 'contact']
+
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.5
+    };
+
+    const handleIntersection = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const targetIndex = sections.indexOf(entry.target.id);
+          if (targetIndex !== -1) {
+            setStartIndex(targetIndex);
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, options);
+
+    sections.forEach((section) => {
+      const target = document.getElementById(section);
+      if (target) {
+        observer.observe(target);
+      }
+    });
+
+    return () => {
+      sections.forEach((section) => {
+        const target = document.getElementById(section);
+        if (target) {
+          observer.unobserve(target);
+        }
+      });
+    };
+  }, []);
+
+  const handleClick = (section) => {
+    const carousel = document.getElementById(section);
+    if (carousel) {
+      const yOffset = -50;
+      const y = carousel.getBoundingClientRect().top + window.scrollY + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
   };
 
   return (
     <ScrollStyle>
-      <p onClick={() => handleClick(0)}>1</p>
-      <p onClick={() => handleClick(1)}>2</p>
-      <p onClick={() => handleClick(1)}>3</p>
-      <p onClick={() => handleClick(2)}>4</p>
+      { sections.map((e, i) => (
+        <p key={i} style={startIndex === i + 1 ? { color: '#AF1313', scale: '1.3' } : { color: '#55649E' }} onClick={() => handleClick(e)}>{ i + 1 }</p>
+      )) }
     </ScrollStyle>
   );
 };

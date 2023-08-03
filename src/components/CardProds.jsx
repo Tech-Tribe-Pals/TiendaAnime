@@ -96,12 +96,55 @@ const CardProduct = styled.article`
   }
 `;
 
-export default function CardProds({ item }) {
+const BigCard = styled.article`
+  border: solid 1px #000;
+  border-radius: 15px;
+  width: 50%;
+  height: 300px;
+  align-items: center;
+  .container-img {
+    position: relative;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    img {
+      top: -80px;
+      height: 100%;
+      position: absolute;
+      background-color: transparent;
+    }
+  }
+  .container-price-button {
+    margin: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    a {
+      text-decoration: none;
+      cursor: pointer;
+      font-size: smaller;
+      font-weight: bold;
+      color: white;
+      background-color: #75b46a;
+      align-self: flex-end !important;
+      border-radius: 0.8rem;
+      padding: 0.4rem 1rem 0.4rem 1rem;
 
+      margin-left: 4rem;
+      border: rgb(0, 0, 0) solid 1px;
+      box-shadow: rgba(0, 0, 0, 1) 2px 3px 0px 1px;
+      :active {
+        color: white;
+        transform: scale(0.9);
+        box-shadow: rgba(0, 0, 0, 1) 1px 1px 0px 1px;
+      }
+    }
+  }
+`;
+
+export function CardProds({ item }) {
   const priceParts = item.price.toFixed(2).split(".");
   const priceIntegerPart = priceParts[0];
   const priceDecimalPart = priceParts[1];
-
 
   return (
     <CardProduct>
@@ -112,13 +155,39 @@ export default function CardProds({ item }) {
       <div className="container-info">
         <h3>{item.name}</h3>
         <div className="container-price-button">
-        <p>
-          {priceIntegerPart}
-          {priceDecimalPart && <sup> {priceDecimalPart}</sup>}
-        </p>
+          <p>
+            {priceIntegerPart}
+            {priceDecimalPart && <sup> {priceDecimalPart}</sup>}
+          </p>
           <Link to={`/products/${item._id}`}>Detalles</Link>
         </div>
       </div>
     </CardProduct>
+  );
+}
+
+export function BigCardProds({ item }) {
+  const priceParts = item.price.toFixed(2).split(".");
+  const priceIntegerPart = priceParts[0];
+  const priceDecimalPart = priceParts[1];
+
+  return (
+    <BigCard>
+      <div className="container-img">
+        <img
+          src={
+            item.img
+          }
+          alt="imgProd"
+        />
+      </div>
+      <div className="container-price-button">
+        <p>
+          <strong>$</strong>{priceIntegerPart}
+          {priceDecimalPart && <sup> {priceDecimalPart}</sup>}
+        </p>
+        <Link to={`/products/${item._id}`}>Detalles</Link>
+      </div>
+    </BigCard>
   );
 }

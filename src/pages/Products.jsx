@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import CardProds from "../components/CardProds";
+import { CardProds } from "../components/CardProds";
 import styled from "styled-components";
 // import GetProds from "../hooks/GetProds";
 import Pagination from "../components/Pagination";
@@ -82,10 +82,11 @@ const Products = () => {
         const data = await response.json();
         setProds(data.docs);
         setTotalPages(data.totalPages);
+        setTimeout(() => {
+          setLoading(false)
+        }, 1500)
       } catch (error) {
         console.log("Error al obtener los datos:", error);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -104,6 +105,7 @@ const Products = () => {
 
   return (
     <ProductStyles>
+      { loading && <Loader /> }
       <nav>
         <ul>
           <li onClick={() => setFilter("casc")}>Tipo</li>
@@ -124,11 +126,9 @@ const Products = () => {
         </div>
       </nav>
       <section className="prods">
-        {loading ? (
-          <Loader />
-        ) : (
-          prods.map((item, i) => <CardProds key={i} item={item} />)
-        )}
+        {prods.length !== 0 && prods.map((item, i) => (
+          <CardProds key={i} item={item} />
+        ))}
       </section>
       <Pagination
         currentPage={currentPage}

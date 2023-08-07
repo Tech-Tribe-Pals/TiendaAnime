@@ -11,9 +11,10 @@ const ScrollStyle = styled.div`
   top: 40vh;
   z-index: 10;
   right: 20px;
-  border: solid 2px #1e2747;
+  border: solid 2px #2f3c6d;
   border-radius: 15px;
   align-items: center;
+  box-shadow: 4px 3px 0px 0px #af1313;
   p {
     display: flex;
     justify-content: center;

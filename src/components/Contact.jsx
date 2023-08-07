@@ -1,63 +1,83 @@
+import React from "react";
 import styled from "styled-components";
 
 const ContactStyle = styled.section`
+  width: 100%;
+  height: 100vh;
+  background-color: #3c4e90;
   display: flex;
-  background-color: #485ba0;
-  margin-bottom: -10px;
-  height: 600px;
-  .imgContainer {
+  flex-direction: row;
+  justify-content: flex-start;
+  img {
+    object-fit: contain;
+    height: 100%;
     width: 50%;
-    display: flex;
-    justify-content: center;
-    img {
-        height: 100%;
-    }
+    margin-right: 1rem;
   }
-  .text {
-    color: #fff;
+
+  article {
+    margin-left: 1rem;
     width: 40%;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    h3 {
-        font-size: 48px;
+    color: white;
+    h2 {
+      align-self: start;
+      /* color: #90d8dd; */
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
     }
+
     p {
-        font-weight: bold;
-        margin: 40px 0;
+      font-size: 1.2rem;
     }
-    .social {
+
+    ul {
       display: flex;
-      justify-content: center;
-      gap: 20px;
+      flex-direction: row;
+      width: 200px;
+      justify-content: space-evenly;
+      margin-top: 1rem;
+      li {
+        img {
+          background-color: transparent;
+          height: 27px;
+          width: 27px;
+        }
+      }
     }
   }
 `;
 
-const Contact = () => {
+export default function Contact() {
   return (
-    <ContactStyle id="contact">
-      <div className="imgContainer">
-        <img
-          src="https://res.cloudinary.com/dcmic2snw/image/upload/v1691074319/tiendaAnime/image_112_db9cg4.png"
-          alt="luffy"
-        />
-      </div>
-      <div className="text">
-        <h3>Seguinos en nuestras redes!</h3>
+    <ContactStyle>
+      <img src="/luffyContact.svg" alt=""/>
+      <article>
+        <h2>
+          Seguinos en nuestras <br /> redes!
+        </h2>
         <p>
-          Nuestras redes son muy diversas pero desde que Elon Musk cambio el
-          icono de twitter no sabemos que icono poner pero dejamos el pajarito
-          porque queda bien.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
         </p>
-        <div className="social">
-          <img src="/icons/x.svg" alt="twitter" />
-          <img src="/icons/insta.svg" alt="instagram" />
-          <img src="/icons/face.svg" alt="facebook" />
-        </div>
-      </div>
+        <ul>
+          <li>
+            <img src="public/icons/face.svg" alt="" />
+          </li>
+          <li>
+            <img src="public/icons/insta.svg" alt="" />
+          </li>
+          <li>
+            <img src="public/icons/x.svg" alt="" />
+          </li>
+        </ul>
+      </article>
     </ContactStyle>
   );
-};
-
-export default Contact;
+}

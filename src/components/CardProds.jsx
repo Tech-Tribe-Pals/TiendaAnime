@@ -38,7 +38,6 @@ const CardProduct = styled.article`
     width: 85%;
     border: rgb(0, 0, 0) solid 1px;
     border-radius: 1rem;
-
     display: flex;
     justify-content: center;
   }
@@ -97,45 +96,59 @@ const CardProduct = styled.article`
 `;
 
 const BigCard = styled.article`
-  border: solid 1px #000;
+  border: solid 1px #bfbfbf;
   border-radius: 15px;
   width: 50%;
   height: 300px;
   align-items: center;
+  justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
+  margin-left: 12px;
+  box-shadow: #bfbfbf 3px 3px 0px 4px;
+  padding: 1rem;
   .container-img {
-    position: relative;
     height: 250px;
+    width: 50%;
     display: flex;
     justify-content: center;
+
     img {
-      top: -80px;
       height: 100%;
-      position: absolute;
+      width: 100%;
       background-color: transparent;
     }
   }
   .container-price-button {
-    margin: 0 20px;
+    height: 70%;
+    width: 50%;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    a {
-      text-decoration: none;
-      cursor: pointer;
-      font-size: smaller;
-      font-weight: bold;
-      color: white;
-      background-color: #75b46a;
-      align-self: flex-end !important;
-      border-radius: 0.8rem;
-      padding: 0.4rem 1rem 0.4rem 1rem;
 
-      margin-left: 4rem;
-      border: rgb(0, 0, 0) solid 1px;
-      box-shadow: rgba(0, 0, 0, 1) 2px 3px 0px 1px;
-      :active {
+    .price-detail {
+      display: flex;
+      flex-direction: row;
+
+      a {
+        text-decoration: none;
+        cursor: pointer;
+        font-size: smaller;
+        font-weight: bold;
         color: white;
-        transform: scale(0.9);
-        box-shadow: rgba(0, 0, 0, 1) 1px 1px 0px 1px;
+        background-color: #75b46a;
+        align-self: flex-end !important;
+        border-radius: 0.8rem;
+        padding: 0.4rem 1rem 0.4rem 1rem;
+
+        margin-left: 4rem;
+        border: rgb(0, 0, 0) solid 1px;
+        box-shadow: rgba(0, 0, 0, 1) 2px 3px 0px 1px;
+        :active {
+          color: white;
+          transform: scale(0.9);
+          box-shadow: rgba(0, 0, 0, 1) 1px 1px 0px 1px;
+        }
       }
     }
   }
@@ -174,19 +187,18 @@ export function BigCardProds({ item }) {
   return (
     <BigCard>
       <div className="container-img">
-        <img
-          src={
-            item.img
-          }
-          alt="imgProd"
-        />
+        <img src={item.img} alt="imgProd" />
       </div>
       <div className="container-price-button">
-        <p>
-          <strong>$</strong>{priceIntegerPart}
-          {priceDecimalPart && <sup> {priceDecimalPart}</sup>}
-        </p>
-        <Link to={`/products/${item._id}`}>Detalles</Link>
+        <h3>{item.name}</h3>
+        <div className="price-detail">
+          <p>
+            <strong>$</strong>
+            {priceIntegerPart}
+            {priceDecimalPart && <sup> {priceDecimalPart}</sup>}
+          </p>
+          <Link to={`/products/${item._id}`}>Detalles</Link>
+        </div>{" "}
       </div>
     </BigCard>
   );

@@ -102,10 +102,10 @@ export default function Header_Nav() {
             </Link>
           </li>
           <li>
-            <Link to={'/cart'}>
+            <div className="cart" onClick={() => handleNavigation("/cart")}>
               <img src="/baskets-market.svg" alt="canasta" />
               <p className="cartNum">{cart.length}</p>
-            </Link>
+            </div>
           </li>
         </ul>
       </nav>

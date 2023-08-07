@@ -3,14 +3,23 @@ import styled from "styled-components";
 const Inicios = styled.section`
   background-color: #222222;
   height: 100vh;
-  width:100%;
+  width: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
 
+  .background {
+    position: absolute;
+    top: -20%;
+    width: 100%;
+    right: -2%;
+    z-index: 0;
+  }
+
   h1 {
+    z-index: 1;
     color: white;
     font-size: 4rem;
     font-family: "Oxanium", cursive;
@@ -21,14 +30,17 @@ const Inicios = styled.section`
   }
 
   h3 {
+    z-index: 1;
     color: grey;
     margin-left: 5rem;
   }
 
   div {
+    z-index: 1;
     margin-bottom: 7rem;
   }
   button {
+    z-index: 1;
     margin-top: 3rem;
     font-size: 1.2rem;
     margin-left: 5rem;
@@ -114,7 +126,7 @@ export default function Inicio() {
       <div>
         <button>Ver Catalogo</button>
       </div>
-
+      <img className="background" src="/BackgroundPlanetas.svg" alt="" />
       <img className="Estatua" src="./Estatua.png" alt="" />
       <img
         className="Background-Vector-White"

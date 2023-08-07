@@ -4,12 +4,12 @@ import { CardProds, BigCardProds } from "./CardProds";
 import styled from "styled-components";
 
 const ProductHomeStyle = styled.section`
-  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 90%;
   padding: 20px;
+
   h2 {
     align-self: flex-start;
     margin-left: 3.5rem;
@@ -27,13 +27,18 @@ const ProductHomeStyle = styled.section`
   }
 
   .news {
+    box-shadow: #bfbfbf 3px 3px 0px 4px;
+    margin-left: 13px;
+    height:330px;
     width: 100%;
     display: flex;
     align-items: center;
     padding: 20px;
-    border: solid 1px #000;
+    border: solid 1px #bfbfbf;
     border-radius: 10px;
     img {
+      object-fit:cover;
+      height:100%;
       width: 50%;
     }
     .text {
@@ -93,20 +98,6 @@ function ProductHome() {
           <button>Ver mas</button>
         </div>
       </section>
-
-      <h2>Novedades</h2>
-
-      <div className="container">
-        {prods.length !== 0
-          ? prods
-              .slice(0, 6)
-              .map((e, i) => (
-                <CardProds className="cardHome" key={i} item={e} />
-              ))
-          : ""}
-      </div>
-
-      <button>Ver mas</button>
     </ProductHomeStyle>
   );
 }

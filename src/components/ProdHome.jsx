@@ -20,7 +20,7 @@ const ProductHomeStyle = styled.section`
       margin: 3rem;
         text-decoration: none;
         cursor: pointer;
-        font-size: 0.6rem;
+        font-size: 0.8rem;
         font-weight: bold;
         color: white;
         background-color: #6a7bb4;

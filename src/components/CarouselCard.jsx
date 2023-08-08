@@ -75,11 +75,6 @@ const CarouselCard = ({ img, title, text1, text2,text3 }) => {
     <Card>
       <div className="text">
         <h2>{title}</h2>
-        <ul>
-          <li>{text1}</li>
-          <li>F</li>
-          <li></li>
-        </ul>
         <button>Ver mas</button>
       </div>
       <div className="imgSection">

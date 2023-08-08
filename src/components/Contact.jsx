@@ -1,9 +1,8 @@
-import React from "react";
 import styled from "styled-components";
 
 const ContactStyle = styled.section`
   width: 100%;
-  height: 100vh;
+  height: 50vh; // antes 100vh
   background-color: #3c4e90;
   display: flex;
   flex-direction: row;
@@ -68,13 +67,13 @@ export default function Contact() {
         </p>
         <ul>
           <li>
-            <img src="public/icons/face.svg" alt="" />
+            <img src="/icons/face.svg" alt="" />
           </li>
           <li>
-            <img src="public/icons/insta.svg" alt="" />
+            <img src="/icons/insta.svg" alt="" />
           </li>
           <li>
-            <img src="public/icons/x.svg" alt="" />
+            <img src="/icons/x.svg" alt="" />
           </li>
         </ul>
       </article>

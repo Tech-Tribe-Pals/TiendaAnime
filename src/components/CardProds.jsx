@@ -112,12 +112,6 @@ const BigCard = styled.article`
     width: 50%;
     display: flex;
     justify-content: center;
-
-    img {
-      height: 100%;
-      width: 100%;
-      background-color: transparent;
-    }
   }
   .container-price-button {
     height: 70%;
@@ -193,7 +187,6 @@ export function BigCardProds({ item }) {
         <h3>{item.name}</h3>
         <div className="price-detail">
           <p>
-            <strong>$</strong>
             {priceIntegerPart}
             {priceDecimalPart && <sup> {priceDecimalPart}</sup>}
           </p>

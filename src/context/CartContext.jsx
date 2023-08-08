@@ -14,7 +14,13 @@ export const CartContextProvider = ({ children }) => {
     if (inCart) {
       inCart.quantity += item.quantity;
     } else {
-      const newProd = { id: item._id, quantity: item.quantity };
+      const newProd = {
+        id: item._id,
+        title: item.name,
+        img: item.img,
+        price: item.price,
+        quantity: item.quantity,
+      };
       setCart([...cart, newProd]);
     }
   };

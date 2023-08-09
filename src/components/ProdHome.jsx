@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import prodsAPI from "../api/prodsAPI";
-import Loader from "./Loader";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -36,15 +35,16 @@ const ProductHomeStyle = styled.section`
         }
       }
     }
+  }
 
   h2 {
     align-self: center;
-    width:87%;
-    margin-right:7rem;
-    background-color:white;
-    border:1px  #bfbfbf solid;
-    border-radius:1rem;
-    padding:1.2rem 1rem 1.2rem 1rem;
+    width: 87%;
+    margin-right: 7rem;
+    background-color: white;
+    border: 1px #bfbfbf solid;
+    border-radius: 1rem;
+    padding: 1.2rem 1rem 1.2rem 1rem;
     margin-bottom: 2rem;
     margin-top: 1rem;
     color: #3c4e90;
@@ -151,43 +151,41 @@ const CardProduct = styled.article`
 
       a {
         padding: 0.4rem 1rem;
-    border: unset;
-    border-radius: 10px;
-    color: #FBFEFF;
-    z-index: 1;
-    background: #75B46A;
-    position: relative;
-    font-weight: bold;
-    font-size: 12px;
-    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
-    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
-    transition: all 250ms;
-    overflow: hidden;
-    }
-    
-    a::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 0;
-    border-radius: 10px;
-    background-color: #212121;
-    z-index: -1;
-    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
-    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
-    transition: all 250ms
-    }
-    
-    a:hover {
-    color: #e8e8e8;
-    }
-    
-    a:hover::before {
-    width: 100%;
-    }
-              
+        border: unset;
+        border-radius: 10px;
+        color: #fbfeff;
+        z-index: 1;
+        background: #75b46a;
+        position: relative;
+        font-weight: bold;
+        font-size: 12px;
+        -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+        box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+        transition: all 250ms;
+        overflow: hidden;
+      }
+
+      a::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 0;
+        border-radius: 10px;
+        background-color: #212121;
+        z-index: -1;
+        -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+        box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+        transition: all 250ms;
+      }
+
+      a:hover {
+        color: #e8e8e8;
+      }
+
+      a:hover::before {
+        width: 100%;
       }
     }
   }
@@ -205,16 +203,12 @@ function ProductHome() {
     getProds();
   }, []);
 
-  if (prods.length === 0) {
-    return <Loader />; // Devolver el componente Loader cuando no hay productos
-  }
-
   return (
     <ProductHomeStyle>
       <h2>Novedades</h2>
 
       <div className="container">
-        {prods.slice(0, 6).map((e, i) => {
+        {prods.length !== 0 && prods.slice(0, 6).map((e, i) => {
           // Mover el cálculo de las partes enteras y decimales del precio aquí dentro
           const priceParts = e.price.toFixed(2).split(".");
           const priceIntegerPart = priceParts[0];
@@ -227,7 +221,8 @@ function ProductHome() {
                 <img src={e.img} alt="imgProd" />
               </div>
               <div className="container-Type">
-              <h5>{e.brand}</h5></div>
+                <h5>{e.brand}</h5>
+              </div>
               <div className="container-info">
                 <h3>{e.name}</h3>
                 <div className="container-price-button">
@@ -243,7 +238,7 @@ function ProductHome() {
         })}
       </div>
 
-      <Link className="linkVerMas">Ver mas</Link>
+      <Link className="linkVerMas" to={'/products'}>Ver mas</Link>
     </ProductHomeStyle>
   );
 }

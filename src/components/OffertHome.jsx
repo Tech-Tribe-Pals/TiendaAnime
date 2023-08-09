@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import prodsAPI from "../api/prodsAPI";
-import { CardProds, BigCardProds } from "./CardProds";
+import { BigCardProds } from "./CardProds";
 import styled from "styled-components";
 
 const ProductHomeStyle = styled.section`

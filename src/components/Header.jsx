@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { CartContext } from "../context/CartContext";
 
 // eslint-disable-next-line react-refresh/only-export-components
-
 const HeaderStyle = styled.header`
   position: sticky;
   top: 0;
@@ -71,7 +70,7 @@ const HeaderStyle = styled.header`
           p {
             font-size: .8rem;
             position: absolute;
-            top: -4px;
+            top: -25px;
             right: -5px;
           }
         }
@@ -91,7 +90,9 @@ export default function Header_Nav() {
   return (
     <HeaderStyle>
       <nav>
-        <img src="/iconNav.svg" alt="icono" />
+      <Link to={'/'}>
+      <img src="/iconNav.svg" alt="icono" />
+      </Link>
         <ul>
           <li>
             <Link to={'/'}>Inicio</Link>
@@ -102,10 +103,10 @@ export default function Header_Nav() {
             </Link>
           </li>
           <li>
-            <div className="cart" onClick={() => handleNavigation("/cart")}>
+            <Link className="cart" to={'/cart'}>
               <img src="/baskets-market.svg" alt="canasta" />
               <p className="cartNum">{cart.length}</p>
-            </div>
+            </Link>
           </li>
         </ul>
       </nav>

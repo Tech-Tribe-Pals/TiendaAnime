@@ -132,7 +132,6 @@ const BigCard = styled.article`
     width: 50%;
     display: flex;
     justify-content: center;
-
     img {
       height: 90%;
       width: 70%;

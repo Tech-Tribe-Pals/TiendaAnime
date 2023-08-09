@@ -6,48 +6,84 @@ import styled from "styled-components";
 import { CartContext } from "../context/CartContext";
 
 const DetailStyle = styled.main`
-  display: flex;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   justify-content: center;
-  div:nth-child(1) {
-    img:nth-child(1) {
-        height: 350px;
+  min-height: 80vh;
+  article {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .previewImg {
+      height: 60vh;
+      width: 80%;
+      border: solid 3px #000;
+      border-radius: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+      img {
+        justify-self: center;
+        height: 90%;
+        margin-bottom: 20px;
+      }
     }
-    .preview {
+    .previewList {
       display: flex;
       justify-content: center;
       gap: 20px;
-      img {
-        border: solid 2px #000;
-        border-radius: 5px;
-        height: 100px;
-        width: 100px;
+      height: 20vh;
+      width: 100%;
+      .previewItem {
+        border: solid 3px #000;
+        width: 25%;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        padding: 5px;
+        img {
+          height: 100%;
+        }
       }
     }
   }
-  div:nth-child(2) {
-    .itemCounter {
+  article:nth-child(2) {
+    justify-content: space-around;
+    height: 70%;
+    margin: auto 0;
+    .footerContainer {
+      width: 70%;
       display: flex;
-      align-items: center;
-    }
-    .buyBtn {
-      margin-top: 20px;
-      text-decoration: none;
-      cursor: pointer;
-      font-size: smaller;
-      font-weight: bold;
-      color: white;
-      background-color: #75b46a;
-      align-self: flex-end !important;
-      border-radius: 0.8rem;
-      padding: 0.5rem 1.5rem 0.5rem 1.5rem;
-      margin-left: 0.8rem;
-      border: rgb(0, 0, 0) solid 1px;
-      box-shadow: rgba(0, 0, 0, 1) 2px 3px 0px 1px;
-
-      :active {
-        color: white;
-        transform: scale(0.9);
-        box-shadow: rgba(0, 0, 0, 1) 1px 1px 0px 1px;
+      justify-content: space-between;
+      .itemCounter {
+        display: flex;
+        align-items: center;
+        button {
+          background-color: transparent;
+          border: none;
+          font-size: 35px;
+          width: 50px;
+          border: solid 2px transparent;
+          border-radius: 5px;
+          font-weight: bold;
+          padding: 0px 10px;
+          &:hover {
+            border: solid 2px #000;
+            cursor: pointer;
+          }
+        }
+        p {
+          font-size: 20px;
+          padding: 5px 15px;
+        }
+      }
+      .buyBtn {
+        padding: 5px 15px;
+        border-radius: 10px;
       }
     }
   }
@@ -56,6 +92,7 @@ const DetailStyle = styled.main`
 const Detail = () => {
   const { id } = useParams();
   const [prod, setProd] = useState("");
+  const [quantity, setQuantity] = useState(1)
 
   const { addToCart } = useContext(CartContext);
 
@@ -71,6 +108,16 @@ const Detail = () => {
     navigate("/cart");
   };
 
+  const changeQuantity = (num) => {
+    if (num === -1 && quantity === 1) {
+      console.log('No se puede comprar menos de 1 producto');
+    } else if (num === 1 && quantity === prod.stock) {
+      console.log('No hay mas stock de este producto');
+    } else {
+      setQuantity(quantity + num)
+    }
+  }
+
   useEffect(() => {
     getProd();
   }, []);
@@ -85,26 +132,32 @@ const Detail = () => {
 
   return (
     <DetailStyle>
-      <div className="imgContainer">
-        <img src={prod.img} alt={prod.category} />
-        <div className="preview">
-          <img src={prod.img} alt={prod.category} />
-          <img src={prod.img} alt={prod.category} />
+      <article className="imgContainer">
+        <div className="previewImg">
           <img src={prod.img} alt={prod.category} />
         </div>
-      </div>
-      <div>
+        <div className="previewList">
+          {[1, 2, 3].map((e, i) => (
+            <div className="previewItem" key={i}>
+              <img src={prod.img} alt={prod.category} />
+            </div>
+          ))}
+        </div>
+      </article>
+      <article>
         <h3 className="infoContainer">{prod.name}</h3>
         <p>{prod.description}</p>
-        <div className="itemCounter">
-          <button>-</button>
-          <p>1</p>
-          <button>+</button>
+        <div className="footerContainer">
+          <div className="itemCounter">
+            <button onClick={() => changeQuantity(-1)}>-</button>
+            <p>{ quantity }</p>
+            <button onClick={() => changeQuantity(1)}>+</button>
+          </div>
+          <button onClick={() => goToCart()} className="buyBtn">
+            Comprar
+          </button>
         </div>
-        <button onClick={() => goToCart()} className="buyBtn">
-          Comprar
-        </button>
-      </div>
+      </article>
     </DetailStyle>
   );
 };

@@ -72,27 +72,47 @@ const CardProduct = styled.article`
       }
 
       a {
-        text-decoration: none;
-        cursor: pointer;
-        font-size: smaller;
-        font-weight: bold;
-        color: white;
-        background-color: #75b46a;
-        align-self: flex-end !important;
-        border-radius: 0.8rem;
-        padding: 0.4rem 1rem 0.4rem 1rem;
-
-        margin-left: 4rem;
-        border: rgb(0, 0, 0) solid 1px;
-        box-shadow: rgba(0, 0, 0, 1) 2px 3px 0px 1px;
-        :active {
-          color: white;
-          transform: scale(0.9);
-          box-shadow: rgba(0, 0, 0, 1) 1px 1px 0px 1px;
-        }
+        padding: 0.4rem 1rem;
+      border: unset;
+      border-radius: 10px;
+      color: #FBFEFF;
+      z-index: 1;
+      background: #75B46A;
+      position: relative;
+      font-weight: bold;
+      font-size: 12px;
+      -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+      box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+      transition: all 250ms;
+      overflow: hidden;
+      }
+      
+      a::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0;
+      border-radius: 10px;
+      background-color: #212121;
+      z-index: -1;
+      -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+      box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+      transition: all 250ms
+      }
+      
+      a:hover {
+      color: #e8e8e8;
+      }
+      
+      a:hover::before {
+      width: 100%;
+      }              
+        
       }
     }
-  }
+  
 `;
 
 const BigCard = styled.article`
@@ -112,6 +132,11 @@ const BigCard = styled.article`
     width: 50%;
     display: flex;
     justify-content: center;
+    img {
+      height: 90%;
+      width: 70%;
+      background-color: transparent;
+    }
   }
   .container-price-button {
     height: 70%;
@@ -123,6 +148,17 @@ const BigCard = styled.article`
     .price-detail {
       display: flex;
       flex-direction: row;
+      
+      span { 
+        margin: 1rem;
+        font-size: xx-large;
+        font-weight: bold;
+            }
+
+            p {
+              text-decoration: line-through;
+              font-weight: bold;
+            }
 
       a {
         text-decoration: none;
@@ -162,11 +198,11 @@ export function CardProds({ item }) {
       <div className="container-info">
         <h3>{item.name}</h3>
         <div className="container-price-button">
-          <p>
+          <p className="p-container">
             {priceIntegerPart}
             {priceDecimalPart && <sup> {priceDecimalPart}</sup>}
           </p>
-          <Link to={`/products/${item._id}`}>Detalles</Link>
+          <Link to={`/products/${item._id}`}>Comprar</Link>
         </div>
       </div>
     </CardProduct>
@@ -186,11 +222,12 @@ export function BigCardProds({ item }) {
       <div className="container-price-button">
         <h3>{item.name}</h3>
         <div className="price-detail">
+          <span>0,25</span>
           <p>
             {priceIntegerPart}
             {priceDecimalPart && <sup> {priceDecimalPart}</sup>}
           </p>
-          <Link to={`/products/${item._id}`}>Detalles</Link>
+          <Link to={`/products/${item._id}`}>Comprar aqui</Link>
         </div>{" "}
       </div>
     </BigCard>

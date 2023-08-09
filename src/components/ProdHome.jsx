@@ -11,27 +11,29 @@ const ProductHomeStyle = styled.section`
   background-color: white;
   margin-bottom: 5rem;
 
-  .linkVerMas {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin: 3rem;
-    text-decoration: none;
-    cursor: pointer;
-    font-size: 0.6rem;
-    font-weight: bold;
-    color: white;
-    background-color: #6a7bb4;
-    align-self: center !important;
-    border-radius: 0.8rem;
-    padding: 0.3rem 0.9rem 0.3rem 0.9rem;
-    border: rgb(0, 0, 0) solid 1px;
-    box-shadow: rgba(0, 0, 0, 1) 2px 3px 0px 1px;
-    :active {
-      color: white;
-      transform: scale(0.9);
-      box-shadow: rgba(0, 0, 0, 1) 1px 1px 0px 1px;
+    .linkVerMas  {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin: 3rem;
+        text-decoration: none;
+        cursor: pointer;
+        font-size: 0.8rem;
+        font-weight: bold;
+        color: white;
+        background-color: #6a7bb4;
+        align-self: center !important;
+        border-radius: 0.8rem;
+        padding: 0.3rem 0.9rem 0.3rem 0.9rem;
+        border: rgb(0, 0, 0) solid 1px;
+        box-shadow: rgba(0, 0, 0, 1) 2px 3px 0px 1px;
+        :active {
+          color: white;
+          transform: scale(0.9);
+          box-shadow: rgba(0, 0, 0, 1) 1px 1px 0px 1px;
+        }
+      }
     }
   }
 

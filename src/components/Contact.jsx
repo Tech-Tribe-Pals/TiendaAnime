@@ -49,6 +49,31 @@ const ContactStyle = styled.section`
       }
     }
   }
+
+  @media (max-width: 576px) {
+    padding: 3rem 1rem;
+    text-align: center;
+    height: auto;
+    img {
+      display: none;
+    }
+
+    article {
+      width: 100%;
+      img {
+        display: block;
+      }
+      br {
+        display: none;
+      }
+      p {
+        margin-top: 1rem;
+      }
+      ul {
+        margin-top: 2rem;
+      }
+    }
+  }
 `;
 
 export default function Contact() {

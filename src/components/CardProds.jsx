@@ -3,14 +3,12 @@ import styled from "styled-components";
 // eslint-disable-next-line react-refresh/only-export-components
 const CardProduct = styled.article`
   background-color: #ffffff;
-  height: 350px;
+  height: 380px;
   width: 300px;
   color: #000000;
-  border-radius: 1rem;
-  border: rgb(0, 0, 0) solid 1px;
-  -webkit-box-shadow: 10px 11px 0px 1px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 10px 11px 0px 1px rgba(0, 0, 0, 0.5);
-  box-shadow: 10px 11px 0px 1px rgba(0, 0, 0, 0.5);
+  border-radius: 0.8rem;
+  border: #bfbfbf solid 1px;
+  box-shadow: 10px 11px 0px 1px #bfbfbf;
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -64,70 +62,118 @@ const CardProduct = styled.article`
       width: 100%;
       display: flex;
       flex-direction: row;
-      justify-content: space-around;
+      justify-content: space-between;
       align-items: center;
+      padding: 0rem 1.2rem;
 
       p {
         font-weight: bolder;
       }
 
       a {
-        padding: 0.4rem 1rem;
-      border: unset;
-      border-radius: 10px;
-      color: #FBFEFF;
-      z-index: 1;
-      background: #75B46A;
-      position: relative;
-      font-weight: bold;
-      font-size: 12px;
-      -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
-      box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
-      transition: all 250ms;
-      overflow: hidden;
-      }
-      
-      a::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 0;
-      border-radius: 10px;
-      background-color: #212121;
-      z-index: -1;
-      -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
-      box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
-      transition: all 250ms
-      }
-      
-      a:hover {
-      color: #e8e8e8;
-      }
-      
-      a:hover::before {
-      width: 100%;
-      }              
-        
+        text-decoration: none;
+        cursor: pointer;
+        font-size: smaller;
+        font-weight: bold;
+        color: white;
+        background-color: #75b46a;
+        align-self: flex-end !important;
+        border-radius: 0.8rem;
+        padding: 0.4rem 1rem 0.4rem 1rem;
+        margin-left: 4rem;
+        border: rgb(0, 0, 0) solid 1px;
+        box-shadow: rgba(0, 0, 0, 1) 2px 3px 0px 0px;
+        :active {
+          color: white;
+          transform: scale(0.9);
+          box-shadow: rgba(0, 0, 0, 1) 1px 1px 0px 0px;
+        }
       }
     }
-  
+  }
+
+  @media (max-width: 576px) {
+    height: 220px;
+    width: 160px;
+    box-shadow: 0px 11px 0px 1px #bfbfbf;
+
+    h5 {
+      padding: 0.4rem 0.2rem;
+      font-size: 0.5rem;
+      border-radius: 0.2rem;
+    }
+
+    .container-img {
+      height: 130px;
+      width: 85%;
+      border-radius: 0.4rem;
+      img {
+        height: 100%;
+      }
+    }
+
+    .container-info {
+      height: 30%;
+      width: 85%;
+      margin-top: 0.7rem;
+      border-radius: 0.4rem;
+      text-align: start;
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      justify-content: space-around;
+
+      h3 {
+        margin-left: 0.3rem;
+        font-size: 0.6rem;
+      }
+
+      div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0rem 0.7rem 0rem 0.9rem;
+        justify-content: space-between;
+
+        p {
+          display: flex;
+          font-size: 0.8rem;
+
+          sup {
+            margin-left: 0.2rem;
+          }
+        }
+
+        a {
+          margin-left: 2rem;
+          font-size: 0.5rem;
+          border-radius: 0.4rem;
+          padding: 0.3rem 0.6rem 0.3rem 0.6rem;
+          border: rgb(0, 0, 0) solid 1px;
+          box-shadow: rgba(0, 0, 0, 1) 0px 3px 0px 0px;
+        }
+      }
+    }
+  }
 `;
 
 const BigCard = styled.article`
   border: solid 1px #bfbfbf;
-  border-radius: 15px;
+  border-radius: 30px;
   width: 50%;
-  height: 300px;
+  height: 350px;
   align-items: center;
   justify-content: space-evenly;
   display: flex;
   flex-direction: row;
-  margin-left: 12px;
   box-shadow: #bfbfbf 3px 3px 0px 4px;
   padding: 1rem;
   .container-img {
+    /* 
+    Rama MAIN
+    height: 300px;
+    width: 50%;
+    */
     height: 100%;
     display: flex;
     justify-content: center;
@@ -143,21 +189,20 @@ const BigCard = styled.article`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
     .price-detail {
       display: flex;
       flex-direction: row;
-      
-      span { 
+
+      span {
         margin: 1rem;
         font-size: xx-large;
         font-weight: bold;
-            }
+      }
 
-            p {
-              text-decoration: line-through;
-              font-weight: bold;
-            }
+      p {
+        text-decoration: line-through;
+        font-weight: bold;
+      }
 
       a {
         text-decoration: none;
@@ -172,11 +217,58 @@ const BigCard = styled.article`
 
         margin-left: 4rem;
         border: rgb(0, 0, 0) solid 1px;
-        box-shadow: rgba(0, 0, 0, 1) 2px 3px 0px 1px;
+        box-shadow: rgba(0, 0, 0, 1) 2px 3px 0px 0px;
         :active {
           color: white;
           transform: scale(0.9);
-          box-shadow: rgba(0, 0, 0, 1) 1px 1px 0px 1px;
+          box-shadow: rgba(0, 0, 0, 1) 1px 1px 0px 0px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    padding: 0rem 1rem 2rem 1rem;
+    height: 400px;
+    width: 100%;
+    flex-direction: column;
+    .container-img {
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        height: 100%;
+        background-color: transparent;
+      }
+    }
+
+    .container-price-button {
+      height: 20%;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .price-detail {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        align-items: center;
+        justify-content: space-between;
+        span {
+          margin: 0rem;
+          margin-top: 1rem;
+          font-size: 1.5rem;
+          font-weight: bold;
+        }
+
+        p {
+          margin-bottom: 1rem;
+          margin-right: 2rem;
+        }
+
+        a {
+          margin-left: 0rem;
         }
       }
     }
@@ -201,7 +293,7 @@ export function CardProds({ item }) {
             {priceIntegerPart}
             {priceDecimalPart && <sup> {priceDecimalPart}</sup>}
           </p>
-          <Link to={`/products/${item._id}`}>Comprar</Link>
+          <Link to={`/products/${item._id}`}>Detalles</Link>
         </div>
       </div>
     </CardProduct>
@@ -226,7 +318,7 @@ export function BigCardProds({ item }) {
             {priceIntegerPart}
             {priceDecimalPart && <sup> {priceDecimalPart}</sup>}
           </p>
-          <Link to={`/products/${item._id}`}>Comprar aqui</Link>
+          <Link to={`/products/${item._id}`}>Detalles</Link>
         </div>{" "}
       </div>
     </BigCard>

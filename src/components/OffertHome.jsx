@@ -2,50 +2,58 @@ import { useEffect, useState } from "react";
 import prodsAPI from "../api/prodsAPI";
 import { BigCardProds } from "./CardProds";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const ProductHomeStyle = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 90%;
-  padding: 20px;
-
-  h2 {
-    align-self: flex-start;
-    margin-left: 3.5rem;
-    margin-bottom: 2rem;
-    margin-top: 1rem;
-    color: #3c4e90;
-    font-size: 2em;
-  }
-
-  .sales {
-    display: flex;
-    gap: 50px;
-    margin: 50px 0;
-    width: 100%;
-  }
+  padding: 20px 0px 0px 3rem;
 
   .news {
     box-shadow: #bfbfbf 3px 3px 0px 4px;
-    margin-left: 13px;
-    height:330px;
+    height: 450px;
     width: 100%;
     display: flex;
+    flex-direction: row;
     align-items: center;
-    padding: 20px;
+    justify-content: space-around;
+    padding: 1rem;
     border: solid 1px #bfbfbf;
-    border-radius: 10px;
+    border-radius: 30px;
+
     img {
-      object-fit:cover;
-      height:100%;
+      height: 100%;
+      object-fit: cover;
       width: 50%;
     }
     .text {
-      width: 50%;
-      text-align: center;
+      display: flex;
+      padding-top: 2rem;
+      height: 100%;
+      flex-direction: column;
+      width: 40%;
+
+      h3 {
+        font-size: 3rem;
+      }
+
       p {
+        font-size: 1rem;
         margin-top: 20px;
+      }
+
+      a {
+        color: white;
+        font-weight: bold;
+        border: #536397 solid 2px;
+        border-radius: 25px;
+        padding: 10px 30px;
+        margin-top: 6rem;
+        align-self: center;
+        box-shadow: #1d1d1d 1px 5px 0px 0px;
+        background-color: #6a7bb4;
       }
     }
   }
@@ -64,6 +72,70 @@ const ProductHomeStyle = styled.section`
     font-weight: bold;
     background-color: transparent;
   }
+
+  .sales {
+    display: flex;
+    gap: 50px;
+    margin: 50px 0;
+    width: 100%;
+  }
+
+  @media (max-width: 576px) {
+    padding: 20px 0px 0px 3rem;
+
+    .news {
+      flex-direction: column;
+      align-items: center;
+      height: 10%;
+
+      img {
+        object-fit: cover;
+        width: 100%;
+      }
+
+      .text {
+        display: flex;
+        padding-top: 2rem;
+        height: 100%;
+
+        width: 100%;
+
+        h3 {
+          font-size: 2rem;
+          text-align: center;
+        }
+
+        p {text-align: start;
+          font-size: 0.8rem;
+          margin-top: 20px;
+        }
+
+        .text-pc {
+          display: none;
+          
+        }
+
+        a {
+          color: white;
+          font-weight: bold;
+          border: #536397 solid 2px;
+          border-radius: 25px;
+          padding: 10px 30px;
+          margin-top: 1rem;
+          align-self: center;
+          box-shadow: #1d1d1d 1px 5px 0px 0px;
+          background-color: #6a7bb4;
+        }
+      }
+    }
+
+    .sales {
+      display: flex;
+      flex-direction: column;
+      margin: 50px 0;
+      width: 100%;
+    }
+  }
 `;
 
 function ProductHome() {
@@ -79,8 +151,25 @@ function ProductHome() {
   }, []);
 
   return (
-    <ProductHomeStyle id="news">
-      <section className="sales">
+    <ProductHomeStyle>
+      <section className="news" id="news">
+        <img src="https://res.cloudinary.com/dcmic2snw/image/upload/v1691073685/tiendaAnime/image_118_qsreme.webp" />
+        <div className="text">
+          <h3>Revisa nuestras ofertas!</h3>
+          <p>
+            Explora nuestra selección especial de productos con descuentos
+            increíbles, especialmente para ti, amante del anime.
+          </p>{" "}
+          <p className="text-pc">
+            {" "}
+            ¡No querrás perderte estas oportunidades únicas para añadir a tu
+            colección y mostrar tu pasión! Haz clic en el enlace a continuación
+            y descubre las mejores ofertas que tenemos para ti.
+          </p>
+          <Link to={`/products`}>Ver Más ...</Link>
+        </div>
+      </section>
+      <section className="sales" id="sales">
         {prods.length !== 0
           ? prods
               .slice(0, 2)
@@ -88,15 +177,6 @@ function ProductHome() {
                 <BigCardProds className="cardHome" key={i} item={e} />
               ))
           : ""}
-      </section>
-
-      <section className="news">
-        <img src="https://res.cloudinary.com/dcmic2snw/image/upload/v1691073685/tiendaAnime/image_118_qsreme.webp" />
-        <div className="text">
-          <h3>Mas ofertas!</h3>
-          <p>Se te va a caer el ojete con los precios!</p>
-          <button>Ver mas</button>
-        </div>
       </section>
     </ProductHomeStyle>
   );

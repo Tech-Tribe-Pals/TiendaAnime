@@ -7,19 +7,31 @@ import Loader from "../components/Loader";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const ProductStyles = styled.main`
-  .prods {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-    margin-bottom: 20px;
-  }
+  width:100%;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+
   nav {
+    width:90%;
+    margin-top:7rem;
     display: flex;
     justify-content: space-between;
     border: solid 2px #000;
     border-radius: 10px;
     padding: 15px 60px;
     margin-bottom: 20px;
+
+/*
+Cambios de Fede
+    border: solid 2px #bfbfbf;
+    border-radius: 40px;
+    padding: 15px;
+
+    box-shadow: 4px 7px 0px 0px #bfbfbf;
+*/
     ul {
       display: flex;
       align-items: center;
@@ -60,24 +72,27 @@ const ProductStyles = styled.main`
       border-radius: 20px;
       display: flex;
       align-items: center;
-      border: solid 4px #000;
+      border: solid 3px #333333;
+      box-shadow: 2px 2px 0px 0px #333333;
+      
       input {
         border: none;
-        background-color: transparent;
         padding: 10px;
         width: 150px;
-        border-radius: 20px 0 0 20px;
+        border-radius: 17px 0 0 17px;
         :focus {
           outline: none;
         }
       }
       .searchIcon {
         background-color: #3c4e90;
-        border-radius: 0 13px 13px 0;
+        border-radius: 0 16px 16px 0;
         width: 50px;
         height: 100%;
         display: flex;
         justify-content: center;
+        border:solid  #333333 1px;
+        box-shadow: 2px 4px 0px 0px #333333;
         img {
           width: 25px;
           margin-left: 5px;
@@ -86,6 +101,41 @@ const ProductStyles = styled.main`
       }
     }
   }
+  .prods {
+    margin-top:2rem;
+    display: grid;
+    width:90%;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-bottom: 2rem;
+  }
+
+
+  @media (max-width: 576px) {
+
+    .prods {
+    margin-top:2rem;
+    display: grid;
+    width:100%;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin-bottom: 2rem;
+  }
+
+
+  nav {
+    width:90%;
+
+  }
+
+
+
+
+
+  }
+
+
+
 `;
 
 const Products = () => {
@@ -139,7 +189,7 @@ const Products = () => {
 
   return (
     <ProductStyles>
-      {loading && /*<Loader />  */ ""}
+      { loading && <Loader /> }
       <nav>
         <ul>
           <li onClick={() => setTypes(!types)}>

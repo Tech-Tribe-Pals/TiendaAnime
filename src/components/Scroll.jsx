@@ -23,6 +23,17 @@ const ScrollStyle = styled.div`
     height: 33%;
     cursor: pointer;
   }
+
+  @media (max-width: 576px) {
+
+
+    display:none;
+
+  }
+
+
+
+
 `;
 
 const Scroll = () => {

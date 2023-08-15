@@ -4,6 +4,7 @@ import styled from "styled-components";
 // import GetProds from "../hooks/GetProds";
 import Pagination from "../components/Pagination";
 import Loader from "../components/Loader";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const ProductStyles = styled.main`
   width:100%;
@@ -18,25 +19,57 @@ const ProductStyles = styled.main`
     margin-top:7rem;
     display: flex;
     justify-content: space-between;
+    border: solid 2px #000;
+    border-radius: 10px;
+    padding: 15px 60px;
+    margin-bottom: 20px;
+
+/*
+Cambios de Fede
     border: solid 2px #bfbfbf;
     border-radius: 40px;
     padding: 15px;
 
     box-shadow: 4px 7px 0px 0px #bfbfbf;
-
+*/
     ul {
       display: flex;
       align-items: center;
+      gap: 80px;
       li {
-        margin-left: 5rem;
         :hover {
           cursor: pointer;
+        }
+      }
+      li:nth-child(1) {
+        position: relative;
+        ol {
+          padding: 5px;
+          width: 100px;
+          border: solid 1px #000;
+          position: absolute;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          background-color: #fff;
+          border-radius: 15px;
+          z-index: 2;
+          li {
+            padding: 5px;
+            width: 100%;
+            border-radius: 10px;
+            &:hover {
+              background-color: #3c4e90;
+            }
+            &:hover a {
+              color: #fff;
+            }
+          }
         }
       }
     }
     .search {
       border-radius: 20px;
-      margin-right: 50px;
       display: flex;
       align-items: center;
       border: solid 3px #333333;
@@ -109,9 +142,16 @@ const Products = () => {
   const [prods, setProds] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [filter, setFilter] = useState("asc");
+  const [filter, setFilter] = useState("");
+  const [types, setTypes] = useState(false);
+  const [order, setOrder] = useState('asc');
+
+  const location = useLocation();
+  const navigation = useNavigate();
+
+  const page =
+    location.search.split("")[location.search.split("").length - 1] || 1;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -120,41 +160,50 @@ const Products = () => {
         const response = await fetch(
           `${
             import.meta.env.VITE_APP_URL
-          }/api/products?search=${searchTerm}&filter=${filter}&page=${currentPage}&limit=9`
+          }/api/products?search=${searchTerm}&filter=${filter}&page=${page}&limit=9&order=${order}`
         );
         const data = await response.json();
         setProds(data.docs);
         setTotalPages(data.totalPages);
         setTimeout(() => {
-          setLoading(false)
-        }, 1500)
+          setLoading(false);
+        }, 1500);
       } catch (error) {
         console.log("Error al obtener los datos:", error);
       }
     };
 
     fetchData();
-  }, [searchTerm, currentPage, filter]);
+  }, [page, filter, order]);
 
   const handleSearch = (event) => {
     const searchTerm = event.target.value.toLowerCase();
     setSearchTerm(searchTerm);
-    setCurrentPage(1);
   };
 
   const handlePageChange = async (page) => {
-    setCurrentPage(page);
+    navigation(`/products?page=${page}`);
   };
+
+  const categories = ["ropa", "funko pop", "cartas", "figuras", "mangas"];
 
   return (
     <ProductStyles>
       { loading && <Loader /> }
-      {/* <nav>
+      <nav>
         <ul>
-          <li onClick={() => setFilter("casc")}>Tipo</li>
-          <li onClick={() => setFilter("basc")}>Marca</li>
-          <li onClick={() => setFilter("asc")}>Precio Min</li>
-          <li onClick={() => setFilter("desc")}>Precio Max</li>
+          <li onClick={() => setTypes(!types)}>
+            Tipo
+            <ol style={types ? { display: "flex" } : { display: "none" }}>
+              {categories.map((e, i) => (
+                <li key={i}>
+                  <Link onClick={() => setFilter(e)}>{e}</Link>
+                </li>
+              ))}
+            </ol>
+          </li>
+          <li onClick={() => setOrder("asc")}>Precio Min</li>
+          <li onClick={() => setOrder("desc")}>Precio Max</li>
         </ul>
         <div className="search">
           <input
@@ -167,14 +216,13 @@ const Products = () => {
             <img src="./searchIcon.svg" alt="Search Icon" />
           </div>
         </div>
-      </nav> */}
+      </nav>
       <section className="prods">
-        {prods.length !== 0 && prods.map((item, i) => (
-          <CardProds key={i} item={item} />
-        ))}
+        {prods.length !== 0 &&
+          prods.map((item, i) => <CardProds key={i} item={item} />)}
       </section>
       <Pagination
-        currentPage={currentPage}
+        currentPage={Number(page)}
         totalPages={totalPages}
         onPageChange={handlePageChange}
       />

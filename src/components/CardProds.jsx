@@ -169,8 +169,12 @@ const BigCard = styled.article`
   box-shadow: #bfbfbf 3px 3px 0px 4px;
   padding: 1rem;
   .container-img {
+    /* 
+    Rama MAIN
     height: 300px;
     width: 50%;
+    */
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

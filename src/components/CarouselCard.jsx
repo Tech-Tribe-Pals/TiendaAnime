@@ -70,7 +70,7 @@ const Card = styled.div`
   }
 `;
 
-const CarouselCard = ({ img, title, text1, text2, text3 }) => {
+const CarouselCard = ({ img, title, text1, text2,text3 }) => {
   return (
     <Card>
       <div className="text">

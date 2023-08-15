@@ -28,7 +28,11 @@ const PaginationStyle = styled.div`
       box-shadow: none;
     }
   }
-`;
+  .active {
+    background-color: #222;
+    color: #FFF;
+  }
+`
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const pageNumbers = [];

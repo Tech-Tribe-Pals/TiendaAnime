@@ -78,8 +78,8 @@ const ContactStyle = styled.section`
 
 export default function Contact() {
   return (
-    <ContactStyle>
-      <img src="/luffyContact.svg" alt="" />
+    <ContactStyle id="contact">
+      <img src="/luffyContact.svg" alt=""/>
       <article>
         <h2>
           Seguinos en nuestras <br /> redes!

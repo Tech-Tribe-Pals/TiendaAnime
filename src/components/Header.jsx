@@ -5,13 +5,13 @@ import { CartContext } from "../context/CartContext";
 
 // eslint-disable-next-line react-refresh/only-export-components
 const HeaderStyle = styled.header`
-  position: sticky;
+position:fixed;
+height:90px;
+width:100%;
   top: 0;
   z-index: 2;
-  background-color: transparent;
-
   nav {
-    height: 90px;
+    height:100%;
     width: 100%;
     background-color: white;
     border-radius: 1rem;
@@ -22,9 +22,6 @@ const HeaderStyle = styled.header`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    position: sticky;
-    z-index: 2;
-    top: 0;
     img {
       height: 55px;
       width: 55px;
@@ -82,6 +79,34 @@ const HeaderStyle = styled.header`
       }
     }
   }
+
+
+  @media (max-width: 576px) {
+    position:none;
+    width:100%;
+    nav {
+    height: 120px;
+    width: 100%;
+    background-color: white;
+    border-radius: 0rem;
+      position:fixed;
+
+    padding:0rem;
+   
+    
+   
+  
+   
+  
+    img {display:none;
+      height: 35px;
+      width: 35px;
+    }
+  }
+
+
+  }
+
 `;
 
 export default function Header_Nav() {

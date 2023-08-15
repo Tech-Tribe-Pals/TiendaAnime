@@ -11,22 +11,56 @@ const FooterStyle = styled.footer`
   .icon {
     text-align: center;
     p {
-        text-align: left;
+      text-align: left;
     }
     img {
-        margin-bottom: 20px;
+      margin-bottom: 20px;
     }
   }
   .navigation {
     ul {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
       li {
         a {
           color: #fff;
           text-decoration: none;
         }
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    grid-template-columns: repeat(1, 1fr);
+
+    .icon {
+      text-align: center;
+
+      p {
+        text-align: center;
+      }
+
+      img {
+        margin-bottom: 20px;
+      }
+    }
+
+    .navigation {
+      display: none;
+    }
+
+    .schedules {
+      display: flex;
+      flex-direction: column;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+
+      h3 {
+        text-align: center;
+      }
+      p {
+        margin-top: 1rem;
       }
     }
   }

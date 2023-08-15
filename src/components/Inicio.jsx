@@ -69,10 +69,10 @@ const Inicios = styled.section`
   }
   .Estatua {
     z-index: 1;
-    width: 450px;
+    width: 550px;
     position: absolute;
     right: 10%;
-    top: 20%;
+    top: 25%;
     pointer-events: none;
     animation: Mecha 0.7s linear;
   }
@@ -114,6 +114,44 @@ const Inicios = styled.section`
       transform: translateY(0%);
     }
   }
+
+  @media (max-width: 576px) {
+    
+    align-items: center;
+    text-align: center;
+    padding: 0rem 1rem;
+
+    justify-content: flex-end;
+    h1 {
+      margin-left: 0rem;
+      margin-bottom: 4rem;
+      br {
+        display: none;
+      }
+    }
+
+    h3 {color: #adacac;
+      width: 90%;
+      margin-left: 0rem;
+    }
+
+    img {
+      display: none;
+    }
+  }
+
+  .background {
+    object-fit:cover;
+    display: block;
+    position: absolute;
+    top:3%;
+    left:2%;
+   height:100%;
+    width: 95%;
+
+
+    filter: brightness(70%);
+  }
 `;
 
 export default function Inicio() {
@@ -123,9 +161,7 @@ export default function Inicio() {
         Tu tienda online <br /> de Anime
       </h1>
       <h3>Los mejores productos al mejor precio</h3>
-      <div>
-        
-      </div>
+      <div></div>
       <img className="background" src="/BackgroundPlanetas.svg" alt="" />
       <img className="Estatua" src="./Estatua.png" alt="" />
       <img

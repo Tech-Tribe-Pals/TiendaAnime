@@ -73,8 +73,8 @@ const Loader = () => {
 
   return (
     <Wrapper isAnimated={isAnimated}> {/* Pass isAnimated prop here */}
-      <img className="puertaDerecha" src="/Puerta derecha.png" alt="" />
-      <img className="puertaIzquierda" src="/Puerta izquierda.png" alt="" />
+      {/* <img className="puertaDerecha" src="/Puerta derecha.png" alt="" />
+      <img className="puertaIzquierda" src="/Puerta izquierda.png" alt="" /> */}
     </Wrapper>
   );
 };

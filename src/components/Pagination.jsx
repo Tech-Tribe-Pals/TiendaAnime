@@ -5,12 +5,30 @@ const PaginationStyle = styled.div`
   justify-content: center;
   margin-bottom: 20px;
   gap: 10px;
+  
   button {
-    padding: 5px 10px;
+    box-shadow: 0px 6px 0px 1px #bfbfbf;
+    background-color: #ffffff;
+    padding: 9px 15px;
+    color: #bfbfbf;
     border-radius: 5px;
-    border: none
+    font-weight: bolder;
+    border: none;
+    outline: #bfbfbf solid 1px;
+    cursor: pointer;
+
+    :hover {
+      background-color: #566fc9;
+      color: white;
+      outline: none;
+    }
+
+    :active {
+      transform: translateY(5%);
+      box-shadow: none;
+    }
   }
-`
+`;
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const pageNumbers = [];

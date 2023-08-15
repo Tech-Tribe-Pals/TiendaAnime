@@ -79,6 +79,63 @@ const ProductHomeStyle = styled.section`
     margin: 50px 0;
     width: 100%;
   }
+
+  @media (max-width: 576px) {
+    padding: 20px 0px 0px 3rem;
+
+    .news {
+      flex-direction: column;
+      align-items: center;
+      height: 10%;
+
+      img {
+        object-fit: cover;
+        width: 100%;
+      }
+
+      .text {
+        display: flex;
+        padding-top: 2rem;
+        height: 100%;
+
+        width: 100%;
+
+        h3 {
+          font-size: 2rem;
+          text-align: center;
+        }
+
+        p {text-align: start;
+          font-size: 0.8rem;
+          margin-top: 20px;
+        }
+
+        .text-pc {
+          display: none;
+          
+        }
+
+        a {
+          color: white;
+          font-weight: bold;
+          border: #536397 solid 2px;
+          border-radius: 25px;
+          padding: 10px 30px;
+          margin-top: 1rem;
+          align-self: center;
+          box-shadow: #1d1d1d 1px 5px 0px 0px;
+          background-color: #6a7bb4;
+        }
+      }
+    }
+
+    .sales {
+      display: flex;
+      flex-direction: column;
+      margin: 50px 0;
+      width: 100%;
+    }
+  }
 `;
 
 function ProductHome() {
@@ -101,10 +158,13 @@ function ProductHome() {
           <h3>Revisa nuestras ofertas!</h3>
           <p>
             Explora nuestra selección especial de productos con descuentos
-            increíbles, especialmente para ti, amante del anime. ¡No querrás
-            perderte estas oportunidades únicas para añadir a tu colección y
-            mostrar tu pasión! Haz clic en el enlace a continuación y descubre
-            las mejores ofertas que tenemos para ti.
+            increíbles, especialmente para ti, amante del anime.
+          </p>{" "}
+          <p className="text-pc">
+            {" "}
+            ¡No querrás perderte estas oportunidades únicas para añadir a tu
+            colección y mostrar tu pasión! Haz clic en el enlace a continuación
+            y descubre las mejores ofertas que tenemos para ti.
           </p>
           <Link to={`/products`}>Ver Más ...</Link>
         </div>

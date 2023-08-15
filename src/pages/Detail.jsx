@@ -92,7 +92,7 @@ const DetailStyle = styled.main`
 const Detail = () => {
   const { id } = useParams();
   const [prod, setProd] = useState("");
-  const [quantity, setQuantity] = useState(1)
+  const [quantity, setQuantity] = useState(1);
 
   const { addToCart } = useContext(CartContext);
 
@@ -110,13 +110,13 @@ const Detail = () => {
 
   const changeQuantity = (num) => {
     if (num === -1 && quantity === 1) {
-      console.log('No se puede comprar menos de 1 producto');
+      console.log("No se puede comprar menos de 1 producto");
     } else if (num === 1 && quantity === prod.stock) {
-      console.log('No hay mas stock de este producto');
+      console.log("No hay mas stock de este producto");
     } else {
-      setQuantity(quantity + num)
+      setQuantity(quantity + num);
     }
-  }
+  };
 
   useEffect(() => {
     getProd();
@@ -150,7 +150,7 @@ const Detail = () => {
         <div className="footerContainer">
           <div className="itemCounter">
             <button onClick={() => changeQuantity(-1)}>-</button>
-            <p>{ quantity }</p>
+            <p>{quantity}</p>
             <button onClick={() => changeQuantity(1)}>+</button>
           </div>
           <button onClick={() => goToCart()} className="buyBtn">

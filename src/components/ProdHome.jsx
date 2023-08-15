@@ -10,37 +10,36 @@ const ProductHomeStyle = styled.section`
   width: 100%;
   background-color: white;
   margin-bottom: 5rem;
+  padding-left: 3rem;
 
-    .linkVerMas  {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      margin: 3rem;
-        text-decoration: none;
-        cursor: pointer;
-        font-size: 0.8rem;
-        font-weight: bold;
-        color: white;
-        background-color: #6a7bb4;
-        align-self: center !important;
-        border-radius: 0.8rem;
-        padding: 0.3rem 0.9rem 0.3rem 0.9rem;
-        border: rgb(0, 0, 0) solid 1px;
-        box-shadow: rgba(0, 0, 0, 1) 2px 3px 0px 1px;
-        :active {
-          color: white;
-          transform: scale(0.9);
-          box-shadow: rgba(0, 0, 0, 1) 1px 1px 0px 1px;
-        }
-      }
+  .linkVerMas {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 4rem 7rem 3rem 3rem;
+
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 1.6;
+    font-weight: bold;
+    color: white;
+    background-color: #6a7bb4;
+    align-self: center !important;
+    border-radius: 0.8rem;
+    padding: 0.3rem 0.9rem 0.3rem 0.9rem;
+    border: rgb(0, 0, 0) solid 1px;
+    box-shadow: rgba(0, 0, 0, 1) 0px 3px 0px 1px;
+    :active {
+      color: white;
+      transform: scale(0.9);
+      box-shadow: rgba(0, 0, 0, 1) 0px 1px 0px 1px;
     }
   }
 
   h2 {
-    align-self: center;
-    width: 87%;
-    margin-right: 7rem;
+    width: 90%;
+
     background-color: white;
     border: 1px #bfbfbf solid;
     border-radius: 1rem;
@@ -57,13 +56,14 @@ const ProductHomeStyle = styled.section`
     gap: 2rem;
     grid-template-columns: repeat(3, 1fr);
     width: 95%;
+    padding-right: 4rem;
   }
 `;
 
 const CardProduct = styled.article`
   background-color: #ffffff;
-  height: 325px;
-  width: 250px;
+  height: 445px;
+  width: 350px;
   color: #000000;
   border-radius: 0.8rem;
   border: #bfbfbf solid 1px;
@@ -138,54 +138,39 @@ const CardProduct = styled.article`
     }
 
     div {
+      padding: 0rem 0.7rem 0rem 0.9rem;
       width: 100%;
       display: flex;
       flex-direction: row;
-      justify-content: space-around;
+      justify-content: space-between;
       align-items: center;
 
       p {
-        font-size: 0.8rem;
-        font-weight: bolder;
+        font-size: 1.3rem;
+        font-weight: 600;
       }
 
       a {
-        padding: 0.4rem 1rem;
-        border: unset;
-        border-radius: 10px;
-        color: #fbfeff;
-        z-index: 1;
-        background: #75b46a;
-        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        cursor: pointer;
+        font-size: 0.8rem;
         font-weight: bold;
-        font-size: 12px;
-        -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
-        box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
-        transition: all 250ms;
-        overflow: hidden;
-      }
-
-      a::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 0;
-        border-radius: 10px;
-        background-color: #212121;
-        z-index: -1;
-        -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
-        box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
-        transition: all 250ms;
-      }
-
-      a:hover {
-        color: #e8e8e8;
-      }
-
-      a:hover::before {
-        width: 100%;
+        color: white;
+        background-color: #75b46a;
+        align-self: center !important;
+        border-radius: 0.8rem;
+        padding: 0.3rem 0.9rem 0.3rem 0.9rem;
+        border: #6a7bb4 solid 1px;
+        box-shadow: #ff4d4d 2px 3px 0px 1px;
+        :active {
+          color: white;
+          transform: scale(0.9);
+          box-shadow: #ff4d4d 1px 1px 0px 1px;
+        }
       }
     }
   }
@@ -208,37 +193,40 @@ function ProductHome() {
       <h2>Novedades</h2>
 
       <div className="container">
-        {prods.length !== 0 && prods.slice(0, 6).map((e, i) => {
-          // Mover el cálculo de las partes enteras y decimales del precio aquí dentro
-          const priceParts = e.price.toFixed(2).split(".");
-          const priceIntegerPart = priceParts[0];
-          const priceDecimalPart = priceParts[1];
+        {prods.length !== 0 &&
+          prods.slice(0, 6).map((e, i) => {
+            // Mover el cálculo de las partes enteras y decimales del precio aquí dentro
+            const priceParts = e.price.toFixed(2).split(".");
+            const priceIntegerPart = priceParts[0];
+            const priceDecimalPart = priceParts[1];
 
-          return (
-            <CardProduct key={i}>
-              {/* Contenido del CardProduct */}
-              <div className="container-img">
-                <img src={e.img} alt="imgProd" />
-              </div>
-              <div className="container-Type">
-                <h5>{e.brand}</h5>
-              </div>
-              <div className="container-info">
-                <h3>{e.name}</h3>
-                <div className="container-price-button">
-                  <p>
-                    {priceIntegerPart}
-                    {priceDecimalPart && <sup> {priceDecimalPart}</sup>}
-                  </p>
-                  <Link to={`/products/${e._id}`}>Detalles</Link>
+            return (
+              <CardProduct key={i}>
+                {/* Contenido del CardProduct */}
+                <div className="container-img">
+                  <img src={e.img} alt="imgProd" />
                 </div>
-              </div>
-            </CardProduct>
-          );
-        })}
+                <div className="container-Type">
+                  <h5>{e.brand}</h5>
+                </div>
+                <div className="container-info">
+                  <h3>{e.name}</h3>
+                  <div>
+                    <p>
+                      {priceIntegerPart}
+                      {priceDecimalPart && <sup> {priceDecimalPart}</sup>}
+                    </p>
+                    <Link to={`/products/${e._id}`}>Detalles</Link>
+                  </div>
+                </div>
+              </CardProduct>
+            );
+          })}
       </div>
 
-      <Link className="linkVerMas" to={'/products'}>Ver mas</Link>
+      <Link className="linkVerMas" to={"/products"}>
+        Ver mas
+      </Link>
     </ProductHomeStyle>
   );
 }

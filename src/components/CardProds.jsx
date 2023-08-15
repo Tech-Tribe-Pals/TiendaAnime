@@ -64,8 +64,9 @@ const CardProduct = styled.article`
       width: 100%;
       display: flex;
       flex-direction: row;
-      justify-content: space-around;
+      justify-content: space-between;
       align-items: center;
+      padding:0rem 1.2rem;
 
       p {
         font-weight: bolder;
@@ -73,68 +74,65 @@ const CardProduct = styled.article`
 
       a {
         padding: 0.4rem 1rem;
-      border: unset;
-      border-radius: 10px;
-      color: #FBFEFF;
-      z-index: 1;
-      background: #75B46A;
-      position: relative;
-      font-weight: bold;
-      font-size: 12px;
-      -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
-      box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
-      transition: all 250ms;
-      overflow: hidden;
+        border: unset;
+        border-radius: 10px;
+        color: #fbfeff;
+        z-index: 1;
+        background: #75b46a;
+        position: relative;
+        font-weight: bold;
+        font-size: 12px;
+        -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+        box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+        transition: all 250ms;
+        overflow: hidden;
       }
-      
+
       a::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 0;
-      border-radius: 10px;
-      background-color: #212121;
-      z-index: -1;
-      -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
-      box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
-      transition: all 250ms
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 0;
+        border-radius: 10px;
+        background-color: #212121;
+        z-index: -1;
+        -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+        box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+        transition: all 250ms;
       }
-      
+
       a:hover {
-      color: #e8e8e8;
+        color: #e8e8e8;
       }
-      
+
       a:hover::before {
-      width: 100%;
-      }              
-        
+        width: 100%;
       }
     }
-  
+  }
 `;
 
 const BigCard = styled.article`
   border: solid 1px #bfbfbf;
-  border-radius: 15px;
+  border-radius: 30px;
   width: 50%;
-  height: 300px;
+  height: 350px;
   align-items: center;
   justify-content: space-evenly;
   display: flex;
   flex-direction: row;
-  margin-left: 12px;
   box-shadow: #bfbfbf 3px 3px 0px 4px;
   padding: 1rem;
   .container-img {
-    height: 250px;
+    height: 300px;
     width: 50%;
     display: flex;
     justify-content: center;
+    align-items: center;
     img {
       height: 90%;
-      width: 70%;
       background-color: transparent;
     }
   }
@@ -144,21 +142,20 @@ const BigCard = styled.article`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
     .price-detail {
       display: flex;
       flex-direction: row;
-      
-      span { 
+
+      span {
         margin: 1rem;
         font-size: xx-large;
         font-weight: bold;
-            }
+      }
 
-            p {
-              text-decoration: line-through;
-              font-weight: bold;
-            }
+      p {
+        text-decoration: line-through;
+        font-weight: bold;
+      }
 
       a {
         text-decoration: none;
@@ -173,11 +170,11 @@ const BigCard = styled.article`
 
         margin-left: 4rem;
         border: rgb(0, 0, 0) solid 1px;
-        box-shadow: rgba(0, 0, 0, 1) 2px 3px 0px 1px;
+        box-shadow: rgba(0, 0, 0, 1) 2px 3px 0px 0px;
         :active {
           color: white;
           transform: scale(0.9);
-          box-shadow: rgba(0, 0, 0, 1) 1px 1px 0px 1px;
+          box-shadow: rgba(0, 0, 0, 1) 1px 1px 0px 0px;
         }
       }
     }

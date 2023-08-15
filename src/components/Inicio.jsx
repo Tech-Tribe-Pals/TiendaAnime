@@ -124,7 +124,7 @@ export default function Inicio() {
       </h1>
       <h3>Los mejores productos al mejor precio</h3>
       <div>
-        <button>Ver Catalogo</button>
+        
       </div>
       <img className="background" src="/BackgroundPlanetas.svg" alt="" />
       <img className="Estatua" src="./Estatua.png" alt="" />

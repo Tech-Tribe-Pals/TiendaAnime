@@ -12,16 +12,19 @@ const HomeStyle = styled.main`
   display: flex;
   flex-direction: column;
   .carouselBack {
-    height:100vh;
+    height: 600px;
     width:100%;
     padding: 20px;
     background-color: #3c4e90;
-    margin-bottom: 100px;
     display: flex;
-   padding-left:2rem;
+    padding-left:2rem;
     flex-direction:column;
     align-items:flex-start;
     justify-content:center;
+  }
+  .Background-Vector-Invert {
+    transform: rotateX(180deg);
+    transform: rotateZ(180deg)
   }
 `;
 
@@ -46,6 +49,11 @@ export default function Home() {
           </SplideSlide>
         </Splide>
       </section>
+      <img
+        className="Background-Vector-Invert"
+        src="./Vector-Blue-Home.svg"
+        alt="linea"
+      />
       <OffertHome />
       <ProdHome />
       <Contact />

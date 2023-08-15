@@ -62,6 +62,7 @@ const DetailStyle = styled.main`
       .itemCounter {
         display: flex;
         align-items: center;
+        position: relative;
         button {
           background-color: transparent;
           border: none;
@@ -75,6 +76,10 @@ const DetailStyle = styled.main`
             border: solid 2px #000;
             cursor: pointer;
           }
+        }
+        p:nth-child(1) {
+          position: absolute;
+          top: -30px;
         }
         p {
           font-size: 20px;
@@ -149,6 +154,7 @@ const Detail = () => {
         <p>{prod.description}</p>
         <div className="footerContainer">
           <div className="itemCounter">
+          <p>Stock: {prod.stock === 1 ? 'Ultimo disponible' : prod.stock}</p>
             <button onClick={() => changeQuantity(-1)}>-</button>
             <p>{ quantity }</p>
             <button onClick={() => changeQuantity(1)}>+</button>

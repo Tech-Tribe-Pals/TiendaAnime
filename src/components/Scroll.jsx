@@ -28,14 +28,16 @@ const ScrollStyle = styled.div`
 const Scroll = () => {
   const [startIndex, setStartIndex] = useState(0);
 
-  const sections = ['carousel', 'news', 'sales', 'contact']
+  const sections = ['carousel', 'news', 'contact']
 
   useEffect(() => {
     const options = {
       root: null,
       rootMargin: "0px",
-      threshold: 0.5
+      threshold: 0
     };
+
+    console.log(startIndex);
 
     const handleIntersection = (entries) => {
       entries.forEach((entry) => {
@@ -70,7 +72,7 @@ const Scroll = () => {
   const handleClick = (section) => {
     const carousel = document.getElementById(section);
     if (carousel) {
-      const yOffset = -50;
+      const yOffset = 150;
       const y = carousel.getBoundingClientRect().top + window.scrollY + yOffset;
       window.scrollTo({ top: y, behavior: "smooth" });
     }

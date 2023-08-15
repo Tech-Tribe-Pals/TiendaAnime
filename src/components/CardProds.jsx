@@ -128,13 +128,12 @@ const BigCard = styled.article`
   box-shadow: #bfbfbf 3px 3px 0px 4px;
   padding: 1rem;
   .container-img {
-    height: 250px;
-    width: 50%;
+    height: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
     img {
       height: 90%;
-      width: 70%;
       background-color: transparent;
     }
   }

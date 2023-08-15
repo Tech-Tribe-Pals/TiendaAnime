@@ -79,8 +79,8 @@ function ProductHome() {
   }, []);
 
   return (
-    <ProductHomeStyle>
-      <section className="sales" id="sales">
+    <ProductHomeStyle id="news">
+      <section className="sales">
         {prods.length !== 0
           ? prods
               .slice(0, 2)
@@ -90,7 +90,7 @@ function ProductHome() {
           : ""}
       </section>
 
-      <section className="news" id="news">
+      <section className="news">
         <img src="https://res.cloudinary.com/dcmic2snw/image/upload/v1691073685/tiendaAnime/image_118_qsreme.webp" />
         <div className="text">
           <h3>Mas ofertas!</h3>

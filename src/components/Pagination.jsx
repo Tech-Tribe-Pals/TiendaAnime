@@ -10,6 +10,10 @@ const PaginationStyle = styled.div`
     border-radius: 5px;
     border: none
   }
+  .active {
+    background-color: #222;
+    color: #FFF;
+  }
 `
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {

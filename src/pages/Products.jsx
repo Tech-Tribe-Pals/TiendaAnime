@@ -3,35 +3,28 @@ import { CardProds } from "../components/CardProds";
 import styled from "styled-components";
 // import GetProds from "../hooks/GetProds";
 import Pagination from "../components/Pagination";
-import Loader from "../components/Loader";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
+import LoaderSimple from "../components/LoaderSimple";
+import React from "react";
 
 const ProductStyles = styled.main`
-  width:100%;
+  width: 100%;
 
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   nav {
-    width:90%;
-    margin-top:7rem;
+    width: 90%;
+    margin-top: 20px;
     display: flex;
     justify-content: space-between;
-    border: solid 2px #000;
-    border-radius: 10px;
-    padding: 15px 60px;
-    margin-bottom: 20px;
-
-/*
-Cambios de Fede
     border: solid 2px #bfbfbf;
     border-radius: 40px;
-    padding: 15px;
+    padding: 15px 40px;
 
     box-shadow: 4px 7px 0px 0px #bfbfbf;
-*/
+
     ul {
       display: flex;
       align-items: center;
@@ -74,7 +67,7 @@ Cambios de Fede
       align-items: center;
       border: solid 3px #333333;
       box-shadow: 2px 2px 0px 0px #333333;
-      
+
       input {
         border: none;
         padding: 10px;
@@ -91,7 +84,7 @@ Cambios de Fede
         height: 100%;
         display: flex;
         justify-content: center;
-        border:solid  #333333 1px;
+        border: solid #333333 1px;
         box-shadow: 2px 4px 0px 0px #333333;
         img {
           width: 25px;
@@ -102,40 +95,46 @@ Cambios de Fede
     }
   }
   .prods {
-    margin-top:2rem;
+    margin-top: 2rem;
     display: grid;
-    width:90%;
+    width: 90%;
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
     margin-bottom: 2rem;
   }
-
-
-  @media (max-width: 576px) {
-
+  @media (max-width: 1080px) {
     .prods {
-    margin-top:2rem;
-    display: grid;
-    width:100%;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-    margin-bottom: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
   }
-
-
-  nav {
-    width:90%;
-
+  @media (max-width: 576px) {
+    .prods {
+      margin-top: 2rem;
+      display: grid;
+      width: 100%;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 25px;
+      margin-bottom: 2rem;
+    }
+    nav {
+      flex-direction: column;
+      width: 100%;
+      ul {
+        justify-content: center;
+        gap: 20px;
+      }
+      .search {
+        margin-top: 20px;
+        input {
+          width: 100%;
+          border-radius: 17px;
+        }
+        .searchIcon {
+          display: none;
+        }
+      }
+    }
   }
-
-
-
-
-
-  }
-
-
-
 `;
 
 const Products = () => {
@@ -145,36 +144,41 @@ const Products = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [filter, setFilter] = useState("");
   const [types, setTypes] = useState(false);
-  const [order, setOrder] = useState('asc');
+  const [order, setOrder] = useState("asc");
 
   const location = useLocation();
   const navigation = useNavigate();
 
   const page =
     location.search.split("")[location.search.split("").length - 1] || 1;
+  const urlParams = new URLSearchParams(location.search);
+  const filterParam = urlParams.get("filter");
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      if (filterParam) {
+        setFilter(filterParam);
+      }
+      const response = await fetch(
+        `${
+          import.meta.env.VITE_APP_URL
+        }/api/products?search=${searchTerm}&filter=${filter}&page=${page}&limit=9&order=${order}`
+      );
+      const data = await response.json();
+      setProds(data.docs);
+      setTotalPages(data.totalPages);
+      setLoading(false);
+      // setTimeout(() => {
+      // }, 1500);
+    } catch (error) {
+      console.log("Error al obtener los datos:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(
-          `${
-            import.meta.env.VITE_APP_URL
-          }/api/products?search=${searchTerm}&filter=${filter}&page=${page}&limit=9&order=${order}`
-        );
-        const data = await response.json();
-        setProds(data.docs);
-        setTotalPages(data.totalPages);
-        setTimeout(() => {
-          setLoading(false);
-        }, 1500);
-      } catch (error) {
-        console.log("Error al obtener los datos:", error);
-      }
-    };
-
     fetchData();
-  }, [page, filter, order]);
+  }, [page, filterParam, filter, order, searchTerm]);
 
   const handleSearch = (event) => {
     const searchTerm = event.target.value.toLowerCase();
@@ -189,7 +193,6 @@ const Products = () => {
 
   return (
     <ProductStyles>
-      { loading && <Loader /> }
       <nav>
         <ul>
           <li onClick={() => setTypes(!types)}>
@@ -197,7 +200,7 @@ const Products = () => {
             <ol style={types ? { display: "flex" } : { display: "none" }}>
               {categories.map((e, i) => (
                 <li key={i}>
-                  <Link onClick={() => setFilter(e)}>{e}</Link>
+                  <Link to={`/products/?filter=${e}&page=1`}>{e}</Link>
                 </li>
               ))}
             </ol>
@@ -213,19 +216,24 @@ const Products = () => {
             onChange={handleSearch}
           />
           <div className="searchIcon">
-            <img src="./searchIcon.svg" alt="Search Icon" />
+            <img src="/searchIcon.svg" alt="Search Icon" />
           </div>
         </div>
       </nav>
-      <section className="prods">
-        {prods.length !== 0 &&
-          prods.map((item, i) => <CardProds key={i} item={item} />)}
-      </section>
-      <Pagination
-        currentPage={Number(page)}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
+      {loading && <LoaderSimple />}
+      {!loading && (
+        <React.Fragment>
+          <section className="prods">
+            {prods.length !== 0 &&
+              prods.map((item, i) => <CardProds key={i} item={item} />)}
+          </section>
+          <Pagination
+            currentPage={Number(page)}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
+        </React.Fragment>
+      )}
     </ProductStyles>
   );
 };

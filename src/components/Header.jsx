@@ -1,27 +1,29 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { CartContext } from "../context/CartContext";
 
 // eslint-disable-next-line react-refresh/only-export-components
 const HeaderStyle = styled.header`
-position:fixed;
-height:90px;
-width:100%;
+  position: fixed;
+  height: 90px;
+  width: 100%;
   top: 0;
-  z-index: 2;
+  z-index: 3;
   nav {
-    height:100%;
+    height: 100%;
     width: 100%;
     background-color: white;
     border-radius: 1rem;
     border: solid #3c4e90 3px;
     display: flex;
-    padding-left: 3rem;
-    padding-right: 6rem;
+    padding: 0 3rem;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    .icon {
+      display: none;
+    }
     img {
       height: 55px;
       width: 55px;
@@ -38,16 +40,15 @@ width:100%;
       li {
         button {
           color: #3c4e90;
-          font-weight:bolder;
+          font-weight: bolder;
           background-color: transparent;
-          border:none;
-          cursor:pointer;
-       
+          border: none;
+          cursor: pointer;
+
           :hover {
             color: #af1313;
-            border-bottom:solid #af1313 2px;
+            border-bottom: solid #af1313 2px;
           }
-
         }
 
         .cart {
@@ -65,7 +66,7 @@ width:100%;
               brightness(103%) contrast(94%);
           }
           p {
-            font-size: .8rem;
+            font-size: 0.8rem;
             position: absolute;
             top: -25px;
             right: -5px;
@@ -80,55 +81,50 @@ width:100%;
     }
   }
 
-
   @media (max-width: 576px) {
-    position:none;
-    width:100%;
     nav {
-    height: 120px;
-    width: 100%;
-    background-color: white;
-    border-radius: 0rem;
-      position:fixed;
-
-    padding:0rem;
-   
-    
-   
-  
-   
-  
-    img {display:none;
-      height: 35px;
-      width: 35px;
+      flex-direction: column;
+      transition: ease-in-out 0.2s;
+      height: ${({ show }) => (show ? "90px" : "200px")};
+      padding: 0;
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        li {
+          display: ${({ show }) => (show ? "none" : "block")};
+        }
+      }
+      .icon {
+        display: flex;
+      }
     }
   }
-
-
-  }
-
 `;
 
 export default function Header_Nav() {
   const { cart } = useContext(CartContext);
 
+  const [show, setShow] = useState(false);
+
   return (
-    <HeaderStyle>
+    <HeaderStyle show={show}>
       <nav>
-      <Link to={'/'}>
-      <img src="/iconNav.svg" alt="icono" />
-      </Link>
+        <Link to={"/"}>
+          <img src="/iconNav.svg" alt="icono" />
+        </Link>
+        <p className="icon" onClick={() => setShow(!show)}>
+          Menu
+        </p>
         <ul>
           <li>
-            <Link to={'/'}>Inicio</Link>
+            <Link to={"/"}>Inicio</Link>
           </li>
           <li>
-            <Link to={'/products'}>
-              Tienda
-            </Link>
+            <Link to={"/products"}>Tienda</Link>
           </li>
           <li>
-            <Link className="cart" to={'/cart'}>
+            <Link className="cart" to={"/cart"}>
               <img src="/baskets-market.svg" alt="canasta" />
               <p className="cartNum">{cart.length}</p>
             </Link>

@@ -53,7 +53,7 @@ const ProductHomeStyle = styled.section`
   .container {
     display: grid;
     gap: 2rem;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     width: 95%;
     padding-right: 4rem;
   }
@@ -72,9 +72,8 @@ const ProductHomeStyle = styled.section`
     }
 
     .container {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       padding-right: 0rem;
-
       gap: 1.5rem;
     }
   }
@@ -256,7 +255,7 @@ function ProductHome() {
 
       <div className="container">
         {prods.length !== 0 &&
-          prods.slice(0, 6).map((e, i) => {
+          prods.slice(0, 4).map((e, i) => {
             // Mover el cálculo de las partes enteras y decimales del precio aquí dentro
             const priceParts = e.price.toFixed(2).split(".");
             const priceIntegerPart = priceParts[0];

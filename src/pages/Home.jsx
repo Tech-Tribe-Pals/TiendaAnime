@@ -13,20 +13,24 @@ const HomeStyle = styled.main`
   flex-direction: column;
   .carouselBack {
     height: 600px;
-    width:100%;
-    padding-right: 8rem;
+    width: 100%;
     background-color: #3c4e90;
     display: flex;
-    padding-left:2rem;
     flex-direction:column;
-    align-items:center;
-    justify-content:center;
-
+    align-items: start;
+    padding-left: 3rem;
 
   }
   .Background-Vector-Invert {
     transform: rotateX(180deg);
     transform: rotateZ(180deg)
+  }
+  @media (width < 768px) {
+    .carouselBack {
+      padding: 0;
+      align-items: center;
+      height: auto;
+    }
   }
 `;
 
@@ -37,17 +41,17 @@ export default function Home() {
       <Inicio />
       <section className="carouselBack" id="carousel">
         <Splide
-          options={{ height: "600px", width: "80%" }}
+          options={{ width: "90%", height: 'auto' }}
           aria-label="My Favorite Images" 
         >
           <SplideSlide >
-            <CarouselCard img={"/img1.jpg "} title={"Cosplay y Ropa"} text1={"trajes de exelente calidad"} text2={"variedad de diseños"} text3={"todos los talles"} />
+            <CarouselCard img={"https://res.cloudinary.com/dcmic2snw/image/upload/v1691073411/tiendaAnime/Banda-shipudden_uu01tw-removebg-preview_azbexh.webp"} title={"Ropa y Cosplay"} text1={"Trajes de exelente calidad"} text2={"Variedad de diseños"} text3={"Todos los talles"} />
           </SplideSlide>
           <SplideSlide>
-            <CarouselCard img={"/img2.jpg "}    title={"Figuras y Coleccionables"}  text1={"Figuras originales importadas"} text2={"Ediciones limitadas"} text3={"Diversas marcas y modelos"} />
+            <CarouselCard img={"https://res.cloudinary.com/dcmic2snw/image/upload/v1686148733/tiendaAnime/image_114_bwkgrl.png"}    title={"Figuras y Coleccionables"}  text1={"Figuras originales importadas"} text2={"Ediciones limitadas"} text3={"Diversas marcas y modelos"} />
           </SplideSlide>
           <SplideSlide>
-            <CarouselCard img={"/img2.jpg "}    title={"Cartas y Mangas!"} text1={"Mangas populares"} text2={"Cartas competitivas"} text3={"Ediciones coleccionistas"} />
+            <CarouselCard img={"https://res.cloudinary.com/dhtgiy7ji/image/upload/v1691005209/samples/GundamShop/Elixir_kixrjj.png"}    title={"Cartas y Mangas!"} text1={"Mangas populares"} text2={"Cartas competitivas"} text3={"Ediciones coleccionistas"} />
           </SplideSlide>
         </Splide>
       </section>

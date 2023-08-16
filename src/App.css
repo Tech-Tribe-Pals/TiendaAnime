@@ -7,3 +7,7 @@
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
+
+main {
+  padding-top: 90px;
+}

@@ -23,77 +23,57 @@ const ScrollStyle = styled.div`
     height: 33%;
     cursor: pointer;
   }
-
-  @media (max-width: 576px) {
-
-
+  @media (max-width: 768px) {
     display:none;
-
   }
-
-
-
-
 `;
 
 const Scroll = () => {
   const [startIndex, setStartIndex] = useState(0);
 
-  const sections = ['carousel', 'news', 'contact']
+  const sections = ['carousel', 'news', 'contact'];
+
+  const handleScroll = () => {
+    const scrollPosition = window.scrollY;
+
+    if (scrollPosition === 0) {
+      setStartIndex(0);
+    } else if (scrollPosition < window.innerHeight) {
+      setStartIndex(1);
+    } else if (scrollPosition < window.innerHeight * 3) {
+      setStartIndex(2);
+    } else {
+      setStartIndex(3);
+    }
+  };
 
   useEffect(() => {
-    const options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0
-    };
-
-    console.log(startIndex);
-
-    const handleIntersection = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const targetIndex = sections.indexOf(entry.target.id);
-          if (targetIndex !== -1) {
-            setStartIndex(targetIndex);
-          }
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(handleIntersection, options);
-
-    sections.forEach((section) => {
-      const target = document.getElementById(section);
-      if (target) {
-        observer.observe(target);
-      }
-    });
-
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      sections.forEach((section) => {
-        const target = document.getElementById(section);
-        if (target) {
-          observer.unobserve(target);
-        }
-      });
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   const handleClick = (section) => {
-    const carousel = document.getElementById(section);
-    if (carousel) {
-      const yOffset = 150;
-      const y = carousel.getBoundingClientRect().top + window.scrollY + yOffset;
-      window.scrollTo({ top: y, behavior: "smooth" });
+    const sectionElement = document.getElementById(section);
+    if (sectionElement) {
+      const yOffset = -150;
+      const y = sectionElement.getBoundingClientRect().top + window.scrollY + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
 
   return (
     <ScrollStyle>
-      { sections.map((e, i) => (
-        <p key={i} style={startIndex === i + 1 ? { color: '#AF1313', scale: '1.3' } : { color: '#55649E' }} onClick={() => handleClick(e)}>{ i + 1 }</p>
-      )) }
+      {sections.map((e, i) => (
+        <p
+          key={i}
+          style={startIndex === i + 1 ? { color: '#AF1313', transform: 'scale(1.3)' } : { color: '#55649E' }}
+          onClick={() => handleClick(e)}
+        >
+          {i + 1}
+        </p>
+      ))}
     </ScrollStyle>
   );
 };

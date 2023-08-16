@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Card = styled.div`
@@ -6,23 +7,23 @@ const Card = styled.div`
   align-items: center;
   background-color: #485ba0;
   width: 100%;
-  height: 100%;
-
+  height: 600px;
+  border-radius: 15px;
+  position: relative;
   .imgSection {
-    background-color: #d6d6d6;
-    width: 400px;
+    /* background-color: #d6d6d6; */
+    width: 50vw;
     height: 400px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     img {
-      height: 50%;
-      margin-right: 0.6rem;
+      height: 100%;
     }
   }
   .text {
-    width: 20%;
+    width: 50vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -31,11 +32,11 @@ const Card = styled.div`
     h2 {
       margin-bottom: 20px;
     }
-    button {
+    a {
       z-index: 1;
       margin-top: 3rem;
       font-size: 1.2rem;
-
+      background-color: #FFF;
       padding: 0.6rem 3rem 0.6rem 3rem;
       border-radius: 0.8rem;
       border: #3c4e90 solid 3px;
@@ -43,7 +44,7 @@ const Card = styled.div`
       font-weight: 700;
       cursor: pointer;
       color: #3c4e90;
-      box-shadow: -6px 4px 0px 0px #af1313;
+      box-shadow: 0px 6px 0px 0px #af1313;
 
       :hover {
         color: #2f3c6d;
@@ -68,11 +69,44 @@ const Card = styled.div`
       }
     }
   }
+  @media (max-width: 768px) {
+    height: auto;
+    padding: 30px 0;
+    background-image: ${({ img }) => `url(${img})`};
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    position: relative; /* Important for positioning the ::before pseudo-element */
+    
+    ::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      border-radius: 15px;
+    }
+
+    .text {
+      width: 100%;
+      z-index: 2;
+      ul {
+        li {
+          margin-top: 1rem;
+        }
+      }
+    }
+    .imgSection {
+      display: none;
+    }
+  }
 `;
 
-const CarouselCard = ({ img, title, text1, text2,text3 }) => {
+const CarouselCard = ({ img, title, text1, text2, text3 }) => {
   return (
-    <Card>
+    <Card img={img}>
       <div className="text">
         <h2>{title}</h2>
 
@@ -81,10 +115,10 @@ const CarouselCard = ({ img, title, text1, text2,text3 }) => {
           <li>{text2}</li>
           <li>{text3}</li>
         </ul>
-        <button>Ver mas</button>
+        <Link to={`/products?filter=${title.split(' ')[0].toLowerCase()}&page=1`}>Ver mas</Link>
       </div>
       <div className="imgSection">
-        <img src={img} />
+        <img src={img} alt={title} />
       </div>
     </Card>
   );

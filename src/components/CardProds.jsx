@@ -38,6 +38,7 @@ const CardProduct = styled.article`
     border-radius: 1rem;
     display: flex;
     justify-content: center;
+    overflow: hidden;
   }
 
   .container-info {
@@ -169,18 +170,14 @@ const BigCard = styled.article`
   box-shadow: #bfbfbf 3px 3px 0px 4px;
   padding: 1rem;
   .container-img {
-    /* 
-    Rama MAIN
-    height: 300px;
+    height: 90%;
     width: 50%;
-    */
-    height: 100%;
+
     display: flex;
     justify-content: center;
     align-items: center;
     img {
       height: 90%;
-      background-color: transparent;
     }
   }
   .container-price-button {
@@ -192,6 +189,8 @@ const BigCard = styled.article`
     .price-detail {
       display: flex;
       flex-direction: row;
+      justify-content: space-between;
+      padding-right: 20px;
 
       span {
         margin: 1rem;
@@ -214,8 +213,6 @@ const BigCard = styled.article`
         align-self: flex-end !important;
         border-radius: 0.8rem;
         padding: 0.4rem 1rem 0.4rem 1rem;
-
-        margin-left: 4rem;
         border: rgb(0, 0, 0) solid 1px;
         box-shadow: rgba(0, 0, 0, 1) 2px 3px 0px 0px;
         :active {
@@ -227,24 +224,22 @@ const BigCard = styled.article`
     }
   }
 
-  @media (max-width: 576px) {
-    padding: 0rem 1rem 2rem 1rem;
-    height: 400px;
+  @media (max-width: 1024px) {
     width: 100%;
     flex-direction: column;
     .container-img {
-      height: 200px;
+      height: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
       img {
         height: 100%;
         background-color: transparent;
+        margin-bottom: 10px;
       }
     }
 
     .container-price-button {
-      height: 20%;
       width: 90%;
       display: flex;
       flex-direction: column;

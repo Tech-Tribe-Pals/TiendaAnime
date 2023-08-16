@@ -13,7 +13,6 @@ const ProductHomeStyle = styled.section`
 
   .news {
     box-shadow: #bfbfbf 3px 3px 0px 4px;
-    height: 450px;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -50,7 +49,7 @@ const ProductHomeStyle = styled.section`
         border: #536397 solid 2px;
         border-radius: 25px;
         padding: 10px 30px;
-        margin-top: 6rem;
+        margin-top: 2rem;
         align-self: center;
         box-shadow: #1d1d1d 1px 5px 0px 0px;
         background-color: #6a7bb4;
@@ -75,9 +74,28 @@ const ProductHomeStyle = styled.section`
 
   .sales {
     display: flex;
-    gap: 50px;
+    justify-content: center;
+    gap: 40px;
     margin: 50px 0;
     width: 100%;
+  }
+
+  @media (max-width: 1024px) {
+    .news {
+      flex-direction: column;
+      height: auto;
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 300px;
+      }
+      .text {
+        width: 100%;
+      }
+    }
+    .sales {
+      
+    }
   }
 
   @media (max-width: 576px) {
@@ -91,10 +109,10 @@ const ProductHomeStyle = styled.section`
       img {
         object-fit: cover;
         width: 100%;
+        height: auto;
       }
 
       .text {
-        display: flex;
         padding-top: 2rem;
         height: 100%;
 
@@ -160,12 +178,12 @@ function ProductHome() {
             Explora nuestra selección especial de productos con descuentos
             increíbles, especialmente para ti, amante del anime.
           </p>{" "}
-          <p className="text-pc">
+          <span className="text-pc">
             {" "}
             ¡No querrás perderte estas oportunidades únicas para añadir a tu
             colección y mostrar tu pasión! Haz clic en el enlace a continuación
             y descubre las mejores ofertas que tenemos para ti.
-          </p>
+          </span>
           <Link to={`/products`}>Ver Más ...</Link>
         </div>
       </section>

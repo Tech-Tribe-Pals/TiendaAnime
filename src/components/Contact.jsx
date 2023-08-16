@@ -79,7 +79,7 @@ const ContactStyle = styled.section`
 export default function Contact() {
   return (
     <ContactStyle id="contact">
-      <img src="/luffyContact.svg" alt=""/>
+      <img src="/luffyContact.svg" alt="luffy"/>
       <article>
         <h2>
           Seguinos en nuestras <br /> redes!
@@ -92,13 +92,13 @@ export default function Contact() {
         </p>
         <ul>
           <li>
-            <img src="/icons/face.svg" alt="" />
+            <a href="https://www.facebook.com/"><img src="/icons/face.svg" alt="facebook" /></a>
           </li>
           <li>
-            <img src="/icons/insta.svg" alt="" />
+            <a href="https://www.instagram.com/"><img src="/icons/insta.svg" alt="instagram" /></a>
           </li>
           <li>
-            <img src="/icons/x.svg" alt="" />
+            <a href="https://www.twitter.com/"><img src="/icons/x.svg" alt="twitter/x" /></a>
           </li>
         </ul>
       </article>

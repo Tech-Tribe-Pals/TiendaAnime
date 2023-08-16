@@ -19,7 +19,7 @@ const Inicios = styled.section`
   }
 
   h1 {
-    z-index: 1;
+    z-index: 2;
     color: white;
     font-size: 4rem;
     font-family: "Oxanium", cursive;
@@ -114,14 +114,16 @@ const Inicios = styled.section`
       transform: translateY(0%);
     }
   }
-
+  @media (max-width: 1024px) {
+    img {
+      display: none;
+    }
+  }
   @media (max-width: 576px) {
-    
     align-items: center;
     text-align: center;
     padding: 0rem 1rem;
-
-    justify-content: flex-end;
+    justify-content: center;
     h1 {
       margin-left: 0rem;
       margin-bottom: 4rem;
@@ -129,26 +131,21 @@ const Inicios = styled.section`
         display: none;
       }
     }
-
-    h3 {color: #adacac;
+    h3 {
+      color: #adacac;
       width: 90%;
       margin-left: 0rem;
-    }
-
-    img {
-      display: none;
     }
   }
 
   .background {
-    object-fit:cover;
+    object-fit: cover;
     display: block;
     position: absolute;
-    top:3%;
-    left:2%;
-   height:100%;
+    top: 3%;
+    left: 2%;
+    height: 100%;
     width: 95%;
-
 
     filter: brightness(70%);
   }

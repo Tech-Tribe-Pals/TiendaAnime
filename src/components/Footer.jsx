@@ -70,7 +70,7 @@ const Footer = () => {
   return (
     <FooterStyle>
       <div className="icon">
-        <img src="/iconNav.svg" alt="icono" />
+        <Link to={'/'}><img src="/iconNav.svg" alt="icono" /></Link>
         <p>
           Nuestra organizacion quiere toda la plata, toda la plata, toda la
           plata, toda la plata, toda la plata, toda la plata, toda la plata,

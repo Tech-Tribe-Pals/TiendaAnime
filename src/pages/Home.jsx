@@ -27,7 +27,8 @@ const HomeStyle = styled.main`
   }
   @media (width < 768px) {
     .carouselBack {
-      padding: 0;
+      
+      padding: 2rem 0rem 2rem 0rem;
       align-items: center;
       height: auto;
     }

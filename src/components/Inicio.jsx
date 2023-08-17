@@ -12,10 +12,12 @@ const Inicios = styled.section`
 
   .background {
     position: absolute;
-    top: -20%;
+    top: -30% !important;
     width: 100%;
-    right: -2%;
+    left:0 !important;
     z-index: 0;
+    filter:brightness(100%);
+    
   }
 
   h1 {
@@ -72,7 +74,7 @@ const Inicios = styled.section`
     width: 550px;
     position: absolute;
     right: 10%;
-    top: 25%;
+    top: 28%;
     pointer-events: none;
     animation: Mecha 0.7s linear;
   }

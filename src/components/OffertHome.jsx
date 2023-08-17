@@ -123,7 +123,7 @@ const ProductHomeStyle = styled.section`
           text-align: center;
         }
 
-        p {text-align: start;
+        p {text-align: center;
           font-size: 0.8rem;
           margin-top: 20px;
         }
@@ -177,13 +177,11 @@ function ProductHome() {
           <p>
             Explora nuestra selección especial de productos con descuentos
             increíbles, especialmente para ti, amante del anime.
-          </p>{" "}
           <span className="text-pc">
-            {" "}
             ¡No querrás perderte estas oportunidades únicas para añadir a tu
             colección y mostrar tu pasión! Haz clic en el enlace a continuación
             y descubre las mejores ofertas que tenemos para ti.
-          </span>
+          </span></p>
           <Link to={`/products`}>Ver Más ...</Link>
         </div>
       </section>
